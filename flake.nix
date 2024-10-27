@@ -7,24 +7,34 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixGL = {
+    nixgl = {
       url = "github:nix-community/nixgl";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-    # wezterm = {
-    #   url = "github:wez/wezterm?dir=nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay = {
+          url = "github:oxalica/rust-overlay/master";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
+      };
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixGL, ... }@inputs: let
-    system = "x86_64-linux";
+  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs: let
     pkgs = import nixpkgs {
       system = "x86_64-linux";
-      overlays = [ nixGL.overlay ];
+      overlays = [ nixgl.overlay ];
       config = {
         allowUnfree = true;
         allowUnfreePredicate = _: true;
@@ -34,7 +44,7 @@
     homeConfigurations."diegoroccia" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
-        inherit self system nixpkgs inputs nixGL;
+        inherit nixpkgs inputs nixgl;
       };
       modules = [./home.nix];
     };
