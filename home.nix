@@ -16,12 +16,24 @@
 	  rofi-wayland
 	  dunst
 	  wlogout
-	  hyprlock
 	  chezmoi
 	  hyprpicker
+	  chromium
+	  google-chrome
+	  gh
+	  git
+	  fzf
+	  tmux
+	  (nerdfonts.override { 
+	    fonts = [ 
+	      "FiraCode"
+	      "JetBrainsMono"
+	      "FantasqueSansMono" 
+	    ];
+	  })
 	];
-  };
 
+  };
 
   programs.mpv = {
     enable = true;
