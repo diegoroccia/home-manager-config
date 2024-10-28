@@ -24,6 +24,7 @@
       fzf
       tmux
       cargo
+      oh-my-posh
       (nerdfonts.override {
         fonts = [
           "FiraCode"
@@ -35,12 +36,44 @@
 
   };
 
+  accounts.email.accounts = {
+    "diego.roccia@zalando.de" = {
+      primary = true;
+      address = "diego.roccia@zalando.de";
+      realName = "Diego Roccia";
+      passwordCommand = [
+        "gopass"
+        "-o"
+        "personal/websites/google.com/diego.roccia@zalando.de"
+      ];
+      flavor = "gmail.com";
+      imap.host = "imap.gmail.com";
+      smtp.host = "smtp.gmail.com";
+      neomutt = {
+        enable = true;
+        extraConfig = ''
+          color status cyan default
+        '';
+      };
+    };
+  };
+
+  programs.neomutt = {
+    enable = true;
+    vimKeys = true;
+  };
+
   programs.mpv = {
     enable = true;
     package = config.lib.nixGL.wrap pkgs.mpv;
   };
 
-  programs.pyenv.enable = true;
+  programs.k9s.enable = true;
+
+  programs.pyenv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   programs.home-manager.enable = true;
 
