@@ -30,22 +30,24 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs: let
-    pkgs = import nixpkgs {
-      system = "x86_64-linux";
-      overlays = [ nixgl.overlay ];
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = _: true;
+  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs:
+    let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ nixgl.overlay ];
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+      };
+    in
+    {
+      homeConfigurations."diegoroccia" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit nixpkgs inputs nixgl;
+        };
+        modules = [ ./home.nix ];
       };
     };
-  in {
-    homeConfigurations."diegoroccia" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = {
-        inherit nixpkgs inputs nixgl;
-      };
-      modules = [./home.nix];
-    };
-  };
 }
