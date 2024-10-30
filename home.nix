@@ -1,8 +1,4 @@
-{ inputs, config, pkgs, nixgl, ... }:
-let
-  oh-my-posh-config = import ./oh-my-posh.nix;
-in
-{
+{ inputs, config, pkgs, nixgl, ... }: {
 
   nixGL.packages = nixgl.packages;
   nixGL.defaultWrapper = "mesa";
@@ -86,8 +82,8 @@ in
     oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
-      settings = oh-my-posh-config;
-    };
+      settings = import ./oh-my-posh.nix;
+      };
   };
 
   fonts.fontconfig.enable = true;
