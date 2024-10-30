@@ -1,4 +1,8 @@
-{ inputs, config, pkgs, nixgl, ... }: {
+{ inputs, config, pkgs, nixgl, ... }:
+let
+  oh-my-posh-config = import ./oh-my-posh.nix;
+in
+{
 
   nixGL.packages = nixgl.packages;
   nixGL.defaultWrapper = "mesa";
@@ -16,15 +20,20 @@
       dunst
       wlogout
       chezmoi
+      gitFull
+      git-lfs
+      delta
+      age
+      age-plugin-yubikey
+      jq
+      yq-go
       hyprpicker
       chromium
       google-chrome
       gh
-      git
       fzf
       tmux
       cargo
-      oh-my-posh
       (nerdfonts.override {
         fonts = [
           "FiraCode"
@@ -58,30 +67,30 @@
     };
   };
 
-  programs.neomutt = {
-    enable = true;
-    vimKeys = true;
+  programs = {
+    home-manager.enable = true;
+    neomutt = {
+      enable = true;
+      vimKeys = true;
+    };
+    pyenv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    go = {
+      enable = true;
+    };
+    awscli = {
+      enable = true;
+    };
+    oh-my-posh = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = oh-my-posh-config;
+    };
   };
-
-  programs.mpv = {
-    enable = true;
-    package = config.lib.nixGL.wrap pkgs.mpv;
-  };
-
-  programs.k9s.enable = true;
-
-  programs.pyenv = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
-
-  programs.go = {
-    enable = true;
-  };
 
   xdg.configFile."environment.d/envvars.conf".text = ''
     PATH="$HOME/.nix-profile/bin:$PATH"

@@ -1,0 +1,7 @@
+#       Serial: 12764228, Slot: 1
+#         Name: Work
+#      Created: Mon, 28 Oct 2024 22:21:13 +0000
+#   PIN policy: Once   (A PIN is required once per session, if set)
+# Touch policy: Always (A physical touch is required for every decryption)
+#    Recipient: age1yubikey1qdr6sk2lffe578dqux5gj47t4djtez7wmsz2t9q48a2ghzm8jhp4sdwtc4u
+AGE-PLUGIN-YUBIKEY-1GNZVYQYZE9P7W2QC92H7H
