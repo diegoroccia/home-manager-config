@@ -30,15 +30,21 @@
       fzf
       tmux
       cargo
+      noto-fonts
+      noto-fonts-emoji
+      material-design-icons
+      font-awesome
+      weather-icons
       (nerdfonts.override {
         fonts = [
           "FiraCode"
           "JetBrainsMono"
           "FantasqueSansMono"
+          "Hack"
+          "Noto"
         ];
       })
     ];
-
   };
 
   accounts.email.accounts = {
