@@ -14,22 +14,15 @@
       inputs.wezterm.packages.${pkgs.system}.default
       rofi-wayland
       dunst
-      wlogout
       chezmoi
-      gitFull
-      git-lfs
-      delta
+      sops
       age
       age-plugin-yubikey
       jq
-      yq-go
       hyprpicker
-      chromium
       google-chrome
       gh
       fzf
-      tmux
-      cargo
       noto-fonts
       noto-fonts-emoji
       material-design-icons
@@ -37,10 +30,7 @@
       weather-icons
       (nerdfonts.override {
         fonts = [
-          "FiraCode"
           "JetBrainsMono"
-          "FantasqueSansMono"
-          "Hack"
           "Noto"
         ];
       })
@@ -71,10 +61,6 @@
 
   programs = {
     home-manager.enable = true;
-    neomutt = {
-      enable = true;
-      vimKeys = true;
-    };
     pyenv = {
       enable = true;
       enableZshIntegration = true;
@@ -89,7 +75,7 @@
       enable = true;
       enableZshIntegration = true;
       settings = import ./oh-my-posh.nix;
-      };
+    };
   };
 
   fonts.fontconfig.enable = true;
@@ -129,8 +115,8 @@
         col.active_border=rgba(df8e1dff) 45deg
         col.inactive_border=rgba(595959aa)
         gaps_in=3
-        gaps_out=40
-        layout=master
+        gaps_out=10
+        layout=dwindle
       }
       env = wlr_renderer_allow_software=1
       env = moz_enable_wayland,1
@@ -158,7 +144,7 @@
 
       # execute your favorite apps at launch
       exec = dbus-update-activation-environment --systemd --all
-      exec = kanshi
+      #exec = kanshi
       exec-once = wlsunset -o edp-1 -l 52.5 -l 13.4
       exec-once = ags
       exec-once = /usr/lib/polkit-1/polkitd --no-debug
@@ -221,6 +207,10 @@
           no_gaps_when_only = 0
       }
 
+      dwindle {
+          preserve_split = true
+      }
+
       gestures {
           workspace_swipe = true
       }
@@ -275,6 +265,8 @@
       bind = super_shift, j, movewindow, d
 
       bind = super_shift, return, layoutmsg, swapwithmaster master
+      bind = super, tab, layoutmsg, togglesplit
+
 
       bind= super alt, k, layoutmsg,addmaster
       bind= super alt, j, layoutmsg,removemaster
@@ -330,16 +322,13 @@
       bind = ctrl alt, l, exec, hyprlock
       bind = super, b, exec, ags -t outerbar
 
-      $monitorlaptop = edp-1
-      $monitor4k = desc:lg electronics lg ultra hd 0x000122c8
-      $monitorvertical = desc:lenovo group limited len t23i-20 vna66f1d
-
-      #monitor=$monitorlaptop,highres,0x0,auto
-      #monitor=$monitor4k,2560x1440@59.951000,1280x0, auto
-      #monitor=$monitorvertical,preferred,auto,auto,transform,1
-      #monitor=,preferred,auto,1
+      monitor = eDP-1, 1920x1080, 0x0, 1
+      monitor = desc:LG Electronics LG Ultra HD 0x000122C8, 2560x1440, 1920x1080, 1
+      monitor = desc:Lenovo Group Limited LEN T23i-20 VNA66F1D, 1920x1080, 4480x0, 1, transform, 1
+      monitor = , preferred, auto, 1
 
       workspace = s[true], gapsout:100, rounding:false, bordersize:0
+      source = ~/.config/hypr/local.conf
     '';
   };
 }
