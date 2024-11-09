@@ -103,7 +103,7 @@
   };
 
   # services.gpg-agent = {
-  
+
   services = {
     wlsunset = {
       enable = true;
@@ -113,7 +113,7 @@
     blanket.enable = true;
     blueman-applet.enable = true;
     dunst.enable = true;
-    dunst.settings = (builtins.fromTOML (builtins.readFile ./resources/dunstrc.toml));
+    dunst.settings = (import ./resources/dunstrc.nix);
     network-manager-applet.enable = true;
     swayosd.enable = true;
   };
