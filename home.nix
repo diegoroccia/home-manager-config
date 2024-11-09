@@ -12,6 +12,7 @@
     stateVersion = "24.11";
     packages = with pkgs; [
       inputs.wezterm.packages.${pkgs.system}.default
+      ags
       rofi-wayland
       dunst
       chezmoi
@@ -23,6 +24,8 @@
       google-chrome
       gh
       fzf
+
+      # Fonts
       noto-fonts
       noto-fonts-emoji
       material-design-icons
@@ -99,6 +102,20 @@
   #   enableSshSupport = true;
   # };
 
+  services = {
+    wlsunset = {
+      enable = true;
+      latitude = 52.5200;
+      longitude = 13.4050;
+    };
+    blanket.enable = true;
+    blueman-applet.enable = true;
+    dunst.enable = true;
+    dunst.settings = (builtins.fromTOML (builtins.readFile ./resources/dunstrc.toml));
+    network-manager-applet.enable = true;
+    swayosd.enable = true;
+  };
+
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -149,7 +166,6 @@
       exec-once = ags
       exec-once = /usr/lib/polkit-1/polkitd --no-debug
       exec-once = nm-applet --indicator
-      exec-once = blueman-applet
       exec = swaybg -i $(find ~/Pictures/wallpapers -iname \*.png | shuf -n1)
       exec-once = systemctl --user start xdg-desktop-portal-hyprland
       exec-once = systemctl --user start xdg-desktop-portal-wlr
@@ -323,7 +339,7 @@
       bind = super, b, exec, ags -t outerbar
 
       monitor = eDP-1, 1920x1080, 0x0, 1
-      monitor = desc:LG Electronics LG Ultra HD 0x000122C8, 2560x1440, 1920x1080, 1
+      monitor = desc:LG Electronics LG Ultra HD 0x000122C8, highres, 1920x1080, 1.5
       monitor = desc:Lenovo Group Limited LEN T23i-20 VNA66F1D, 1920x1080, 4480x0, 1, transform, 1
       monitor = , preferred, auto, 1
 
