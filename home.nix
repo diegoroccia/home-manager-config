@@ -14,26 +14,27 @@
       # GUI
       inputs.wezterm.packages.${pkgs.system}.default
       ags
-      rofi-wayland
       dunst
-      hyprpicker
       google-chrome
+      hyprpicker
+      rofi-wayland
 
       # Security
-      sops
       age
       age-plugin-yubikey
       bitwarden
+      git-credential-gopass
       gopass
       gopass-jsonapi
-      git-credential-gopass
+      sops
 
       # Console
+      btop
       chezmoi
-      jq
-      gh
       fzf
+      gh
       git
+      jq
 
       # Fonts
       noto-fonts
@@ -89,15 +90,42 @@
       enableZshIntegration = true;
       settings = import ./oh-my-posh.nix;
     };
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      enableVteIntegration = true;
+      dotDir = ".config/zsh";
+      initExtra = (builtins.readFile ./resources/zshrc);
+      antidote = {
+        enable = true;
+        plugins = [
+          "ohmyzsh/ohmyzsh path:lib"
+          "ohmyzsh/ohmyzsh path:plugins/tmux"
+          "ohmyzsh/ohmyzsh path:plugins/fzf"
+          "ohmyzsh/ohmyzsh path:plugins/sudo"
+          "ohmyzsh/ohmyzsh path:plugins/aws"
+          "ohmyzsh/ohmyzsh path:plugins/kubectx"
+          "zsh-users/zsh-autosuggestions"
+          "zsh-users/zsh-completions"
+          "catppuccin/zsh-syntax-highlighting path:themes/catppuccin_frappe-zsh-syntax-highlighting.zsh"
+        ];
+      };
+    };
   };
 
   fonts.fontconfig.enable = true;
 
-  xdg.configFile."environment.d/envvars.conf".text = ''
-    PATH="$HOME/.nix-profile/bin:$PATH"
-    XDG_DATA_DIRS="/home/diegoroccia/.nix-profile/share:$XDG_DATA_DIRS"
-    NIXOS_OZONE_WL="1";
-  '';
+  xdg.mimeApps.enable = true;
+
+  xdg.configFile = {
+    "environment.d/envvars.conf" = {
+      text = ''
+        PATH="$HOME/.nix-profile/bin:$PATH"
+        XDG_DATA_DIRS="/home/diegoroccia/.nix-profile/share:$XDG_DATA_DIRS"
+        NIXOS_OZONE_WL="1";
+      '';
+    };
+  };
 
   xdg.portal = {
     enable = true;

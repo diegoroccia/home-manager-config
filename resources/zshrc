@@ -1,0 +1,106 @@
+export LANG=en_US.utf8
+export LANGUAGE=en_US.utf8
+export GOPRIVATE=github.bus.zalan.do
+export PATH="$HOME/go/bin:$PATH:$HOME/.local/bin"
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin:/home/droccia/.cargo/bin"
+export PATH="$PATH:/home/droccia/.local/share/gem/ruby/2.7.0/bin"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+export FPATH="$FPATH:$HOME/.config/zsh/completions"
+
+if [[ -S "/run/user/1000/gnupg/S.gpg-agent.ssh" ]]; then
+ export GPG_TTY=$(tty)
+ if [[ ${SSH_AUTH_SOCK} != "/run/user/1000/gnupg/S.gpg-agent.ssh" ]]; then
+ export SSH_AUTH_SOCK="/run/user/1000/gnupg/S.gpg-agent.ssh"
+ fi
+fi
+
+# export ZSH_TMUX_AUTOSTART=false
+# export ZSH_TMUX_AUTOCONNECT=false
+# export ZSH_TMUX_UNICODE=true
+#
+# export ZSH_TMUX_CONFIG=${HOME}/.config/tmux/tmux.conf
+# export ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+#
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# export HISTFILE=~/.zsh_history
+# export HISTSIZE=1000
+# export SAVEHIST=1000
+#
+# setopt appendhistory
+# setopt auto_menu
+# setopt hist_ignore_all_dups # remove older duplicate entries from history
+# setopt hist_reduce_blanks # remove superfluous blanks from history items
+# setopt inc_append_history # save history entries as soon as they are entered
+# setopt share_history # share history between different instances
+# setopt auto_pushd         # Make cd push each old directory onto the stack
+# setopt pushd_ignore_dups  # Don't push duplicates onto the stack
+# setopt extended_history       # Save time stamps and durations
+# setopt hist_expire_dups_first # Expire duplicates first
+#
+# setopt SHARE_HISTORY        # Constantly share history between shell instances
+#
+# alias ls='ls --color --hyperlink=auto'
+# alias ll='ls -l'
+#
+# zstyle ':notify:*' error-title "Command failed"
+# zstyle ':notify:*' success-title "Command finished"
+# zstyle ':notify:*' command-complete-timeout 15
+# zstyle ':notify:*' expire-time 60
+#
+# zmodload zsh/complist
+# setopt MENU_COMPLETE
+# setopt LIST_ROWS_FIRST
+# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*' menu select=long search
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+#
+#
+# bindkey -v
+# export KEYTIMEOUT=1
+# # autoload -Uz edit-command-line
+# # zle -N edit-command-line
+# # bindkey -M vicmd v edit-command-line
+#
+# autoload -Uz surround
+# zle -N delete-surround surround
+# zle -N add-surround surround
+# zle -N change-surround surround
+# bindkey -M vicmd cs change-surround
+# bindkey -M vicmd ds delete-surround
+# bindkey -M vicmd ys add-surround
+# bindkey -M visual S add-surround
+#
+# zlogin() { aws configure set credential_process "zalando-aws-cli credential-process $1 ReadOnly" }
+#
+# check_config_values() { 
+#     branch=$(git rev-parse --abbrev-ref HEAD)
+#     tmpDir=$(mktemp -d)
+#     git checkout dev
+#     ailm render configs --config-dir . > $tmpDir/before_change.yaml
+#     git checkout $branch
+#     ailm render configs --config-dir . > $tmpDir/after_change.yaml
+#     cmp $tmpDir/before_change.yaml $tmpDir/after_change.yaml
+# }
+#
+# export BUN_INSTALL="$HOME/.bun" 
+# export PATH="$BUN_INSTALL/bin:$PATH"
+#
+# autoload bashcompinit && bashcompinit
+# autoload -Uz compinit && compinit
+# complete -C '/usr/local/bin/aws_completer' aws
+
+# bun completions
+# [ -s "/home/diegoroccia/.bun/_bun" ] && source "/home/diegoroccia/.bun/_bun"
+
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
+
+
+# Created by `pipx` on 2024-10-18 11:30:23
+export PATH="$PATH:/home/diegoroccia/.local/bin"
+source $ZDOTDIR/wezterm.sh
