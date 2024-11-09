@@ -24,12 +24,16 @@
       age
       age-plugin-yubikey
       bitwarden
+      gopass
+      gopass-jsonapi
+      git-credential-gopass
 
       # Console
       chezmoi
       jq
       gh
       fzf
+      git
 
       # Fonts
       noto-fonts
