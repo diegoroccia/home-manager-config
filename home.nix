@@ -4,11 +4,16 @@
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
 
+  catppuccin.flavor = "mocha";
+  catppuccin.enable = true;
+  catppuccin.pointerCursor.enable = true;
+
   home = {
     username = "diegoroccia";
     homeDirectory = "/home/diegoroccia";
     preferXdgDirectories = true;
     stateVersion = "23.05";
+    # catppuccin.enable = true;
     packages = with pkgs; [
 
       # GUI

@@ -33,6 +33,21 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "locked": {
+        "lastModified": 1731088327,
+        "narHash": "sha256-Oizjf0wXBTqALipX4fQdGjq9IBSCXz8wwcfCGRK73bI=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "7bebd062df3239c005c0d600f5dfd8514f5915f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -201,11 +216,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1731119644,
-        "narHash": "sha256-tQytm74mti64PmF0BbLdFUip9OD/nJwSiGuwAGlSAZY=",
+        "lastModified": 1731162467,
+        "narHash": "sha256-b0w2XOVCuEdBIiTpKaaeSesKux1Q51YWEWdKbljDXPE=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "cca227a53e10b9101d2fbcfb99e6360b416d7168",
+        "rev": "a425fbebe4cf4238e48a42f724ef2208959d66cf",
         "type": "github"
       },
       "original": {
@@ -460,6 +475,7 @@
     },
     "root": {
       "inputs": {
+        "catppuccin": "catppuccin",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",

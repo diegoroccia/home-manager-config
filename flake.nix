@@ -18,6 +18,7 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    catppuccin.url = "github:catppuccin/nix";
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
       inputs = {
@@ -30,7 +31,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nixgl, catppuccin, ... }@inputs:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
@@ -47,7 +48,10 @@
         extraSpecialArgs = {
           inherit nixpkgs inputs nixgl;
         };
-        modules = [ ./home.nix ];
+        modules = [ 
+          ./home.nix 
+          catppuccin.homeManagerModules.catppuccin
+        ];
       };
     };
 }
