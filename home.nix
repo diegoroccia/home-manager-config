@@ -2,14 +2,13 @@
 
   nixGL.packages = nixgl.packages;
   nixGL.defaultWrapper = "mesa";
-  #nixGL.offloadWrapper = "nvidiaPrime";
   nixGL.installScripts = [ "mesa" ];
 
   home = {
     username = "diegoroccia";
     homeDirectory = "/home/diegoroccia";
     preferXdgDirectories = true;
-    stateVersion = "24.11";
+    stateVersion = "23.05";
     packages = with pkgs; [
       inputs.wezterm.packages.${pkgs.system}.default
       ags
@@ -97,11 +96,7 @@
   };
 
   # services.gpg-agent = {
-  #   enable = true;
-  #   defaultCacheTtl = 1800;
-  #   enableSshSupport = true;
-  # };
-
+  
   services = {
     wlsunset = {
       enable = true;
