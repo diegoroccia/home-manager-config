@@ -10,17 +10,24 @@
     preferXdgDirectories = true;
     stateVersion = "23.05";
     packages = with pkgs; [
+
+      # GUI
       inputs.wezterm.packages.${pkgs.system}.default
       ags
       rofi-wayland
       dunst
-      chezmoi
+      hyprpicker
+      google-chrome
+
+      # Security
       sops
       age
       age-plugin-yubikey
+      bitwarden
+
+      # Console
+      chezmoi
       jq
-      hyprpicker
-      google-chrome
       gh
       fzf
 
