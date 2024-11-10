@@ -1,10 +1,14 @@
-{ inputs, config, pkgs, nixgl, ... }: {
+{ inputs, config, pkgs, nixgl, lib, ... }: {
+
+  imports = [ inputs.ags.homeManagerModules.default ];
+
+  targets.genericLinux.enable = true;
 
   nixGL.packages = nixgl.packages;
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
 
-  catppuccin.flavor = "mocha";
+  catppuccin.flavor = "macchiato";
   catppuccin.enable = true;
   catppuccin.pointerCursor.enable = true;
 
@@ -12,17 +16,23 @@
     username = "diegoroccia";
     homeDirectory = "/home/diegoroccia";
     preferXdgDirectories = true;
-    stateVersion = "23.05";
-    # catppuccin.enable = true;
+    stateVersion = "24.11";
     packages = with pkgs; [
+
+      # Core
+      gsettings-desktop-schemas
+      dconf
+      xdg-desktop-portal
 
       # GUI
       inputs.wezterm.packages.${pkgs.system}.default
-      ags
       dunst
       google-chrome
       hyprpicker
       rofi-wayland
+      networkmanagerapplet
+
+
 
       # Security
       age
@@ -34,11 +44,13 @@
       sops
 
       # Console
+      bat
       btop
       chezmoi
       fzf
       gh
       git
+      imgcat
       jq
 
       # Fonts
@@ -55,6 +67,7 @@
       })
     ];
   };
+
 
   accounts.email.accounts = {
     "diego.roccia@zalando.de" = {
@@ -95,6 +108,15 @@
       enableZshIntegration = true;
       settings = import ./oh-my-posh.nix;
     };
+    ags = {
+      enable = true;
+      extraPackages = with pkgs; [
+        gtksourceview
+        webkitgtk
+        accountsservice
+      ];
+      systemd.enable = true;
+    };
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -120,23 +142,52 @@
 
   fonts.fontconfig.enable = true;
 
-  xdg.mimeApps.enable = true;
+  xdg = {
+    mimeApps.enable = true;
 
-  xdg.configFile = {
-    "environment.d/envvars.conf" = {
-      text = ''
-        PATH="$HOME/.nix-profile/bin:$PATH"
-        XDG_DATA_DIRS="/home/diegoroccia/.nix-profile/share:$XDG_DATA_DIRS"
-        NIXOS_OZONE_WL="1";
-      '';
+    configFile = {
+      "environment.d/envvars.conf" = {
+        text = ''
+          PATH="$HOME/.nix-profile/bin:$PATH"
+          #XDG_DATA_DIRS="/home/diegoroccia/.nix-profile/share:$XDG_DATA_DIRS:/home/diegoroccia/.nix-profile/share/gsettings-schemas/gsettings-desktop-schemas-47.1"
+          NIXOS_OZONE_WL="1";
+          WLR_RENDERER_ALLOW_SOFTWARE=1
+          MOZ_ENABLE_WAYLAND=1
+          GDK_BACKEND=wayland
+          QT_QPA_PLATFORM=wayland
+          SDL_VIDEODRIVER=wayland
+          CLUTTER_BACKEND=wayland
+          XDG_CURRENT_DESKTOP=Hyprland
+          XDG_SESSION_TYPE=wayland
+          XDG_SESSION_DESKTOP=Hyprland
+          QT_AUTO_SCREEN_SCALE_FACTOR=1
+          QT_QPA_PLATFORM=wayland
+          QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+          QT_QPA_PLATFORMTHEME=qt5ct
+          XCURSOR_SIZE=24
+          GTK_THEME=Catppuccin-Mocha-Standard-Teal-Dark
+          ZDOTDIR="$HOME/.config/zsh"
+        '';
+      };
     };
-  };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = "*";
-    xdgOpenUsePortal = true;
+    portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-hyprland
+      ];
+      xdgOpenUsePortal = true;
+      config.common.default = "*";
+    };
+
+    systemDirs = {
+      data = [
+        "${config.home.homeDirectory}/.local/share"
+        "/usr/local/share"
+      ];
+    };
   };
 
   # services.gpg-agent = {
@@ -149,10 +200,36 @@
     };
     blanket.enable = true;
     blueman-applet.enable = true;
+    hyprpaper = {
+      enable = true;
+
+      settings = {
+        ipc = "on";
+        splash = false;
+        splash_offset = 2.0;
+        preload = [
+          "~/Pictures/wallpapers/wp7058517-dragon-ball-minimalist-art-wallpapers.jpg"
+          "~/Pictures/wallpapers/wp4957443-minimalist-desktop-wallpapers.jpg"
+          "~/Pictures/wallpapers/wp5693139-minimalist-desktop-hd-wallpapers.jpg"
+        ];
+        wallpaper = [
+          "eDP-1,                                                 ~/Pictures/wallpapers/wp7058517-dragon-ball-minimalist-art-wallpapers.jpg"
+          "desc:LG Electronics LG Ultra HD 0x000122C8,            ~/Pictures/wallpapers/wp4957443-minimalist-desktop-wallpapers.jpg"
+          "desc:Lenovo Group Limited LEN T23i-20 VNA66F1D,        ~/Pictures/wallpapers/wp5693139-minimalist-desktop-hd-wallpapers.jpg"
+        ];
+      };
+    };
     dunst.enable = true;
     dunst.settings = (import ./resources/dunstrc.nix);
     network-manager-applet.enable = true;
     swayosd.enable = true;
+    podman = import ./podman.nix;
+  };
+
+  systemd = {
+    user = {
+      enable = true;
+    };
   };
 
 
