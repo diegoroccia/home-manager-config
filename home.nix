@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, nixgl, ... }: {
+{ inputs, config, pkgs, nixgl, lib, ... }: {
 
   imports = [ inputs.ags.homeManagerModules.default ];
 
@@ -9,6 +9,7 @@
   nixGL.installScripts = [ "mesa" ];
 
   catppuccin.flavor = "macchiato";
+  catppuccin.accent = "lavender";
   catppuccin.enable = true;
   catppuccin.pointerCursor.enable = true;
 
@@ -47,12 +48,8 @@
       sops
 
       # Console
-      bat
-      btop
       chezmoi
-      fzf
       gh
-      git
       imgcat
       jq
 
@@ -100,8 +97,54 @@
       enable = true;
       enableZshIntegration = true;
     };
+    bat.enable = true;
+    btop.enable = true;
+    browserpass.enable = true;
+    fzf.enable = true;
+    direnv.enable = true;
+    dircolors.enable = true;
+    gh = {
+      enable = true;
+    };
+    git = {
+      enable = true;
+      userName = "Diego Roccia";
+      userEmail = "diego.roccia@gmail.com";
+      extraConfig = {
+        url = {
+          "git@github-zse:zalando-" = {
+            insteadOf = "git@github.com:zalando-";
+            name = "Diego Roccia";
+            email = "diego.roccia@zalando.de";
+          };
+          "git@github-zcn:zalando-cn-" = {
+            insteadOf = "git@github.com:zalando-cn-";
+            name = "Diego Roccia";
+            email = "diego.roccia@zalando.de";
+          };
+          "git@github.bus.zalan.do:" = {
+            insteadOf = "https://github.bus.zalan.do/";
+          };
+          "ssh://git@github.bus.zalan.do/" = {
+            insteadOf = "https://github.bus.zalan.do/";
+          };
+        };
+        commit = {
+          gpgSign = true;
+        };
+      };
+    };
+    lazygit.enable = true;
+    taskwarrior = {
+      enable = true;
+      package = pkgs.taskwarrior3;
+    };
+
     go = {
       enable = true;
+      goPrivate = [
+        "github.bus.zalan.do"
+      ];
     };
     awscli = {
       enable = true;
@@ -115,7 +158,6 @@
       enable = true;
       extraPackages = with pkgs; [
         gtksourceview
-        webkitgtk
         accountsservice
       ];
       systemd.enable = true;
@@ -146,6 +188,7 @@
   fonts.fontconfig.enable = true;
 
   xdg = {
+    enable = true;
     mimeApps.enable = true;
 
     configFile = {
@@ -244,7 +287,6 @@
       enable = true;
     };
   };
-
 
   wayland.windowManager.hyprland = {
     enable = true;
