@@ -23,6 +23,9 @@
       gsettings-desktop-schemas
       dconf
       xdg-desktop-portal
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-wlr
 
       # GUI
       inputs.wezterm.packages.${pkgs.system}.default
@@ -177,6 +180,13 @@
         pkgs.xdg-desktop-portal
         pkgs.xdg-desktop-portal-gtk
         pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-wlr
+      ];
+      configPackages = [
+        pkgs.xdg-desktop-portal
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-wlr
       ];
       xdgOpenUsePortal = true;
       config.common.default = "*";
@@ -222,7 +232,10 @@
     dunst.enable = true;
     dunst.settings = (import ./resources/dunstrc.nix);
     network-manager-applet.enable = true;
-    swayosd.enable = true;
+    swayosd = {
+      enable = true;
+      stylePath = "${pkgs.swayosd}/etc/xdg/swayosd/style.css";
+    };
     podman = import ./podman.nix;
   };
 
