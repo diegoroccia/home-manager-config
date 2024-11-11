@@ -100,6 +100,7 @@
     bat.enable = true;
     btop.enable = true;
     browserpass.enable = true;
+    firefox.enable = true;
     fzf.enable = true;
     direnv.enable = true;
     dircolors.enable = true;
@@ -168,6 +169,10 @@
       enableVteIntegration = true;
       dotDir = ".config/zsh";
       initExtra = (builtins.readFile ./resources/zshrc);
+      shellAliases = {
+        "hms" = "home-manager switch -b backup --flake ~/.config/home-manager";
+      };
+      syntaxHighlighting.enable = true;
       antidote = {
         enable = true;
         plugins = [
