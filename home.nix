@@ -111,40 +111,50 @@
       enable = true;
       userName = "Diego Roccia";
       userEmail = "diego.roccia@gmail.com";
-      extraConfig =
+      includes = [
         {
-          user = {
-            "personal" = {
+          condition = "gitdir:~/code/personal/";
+          contents = {
+            user = {
               email = "diego.roccia@gmail.com";
+              name = "Diego Roccia";
               signingKey = "0xC9A64AACCCCE89E3";
             };
-            "work" = {
+          };
+        }
+        {
+          condition = "gitdir:~/code/ghe/";
+          contents = {
+            user = {
               email = "diego.roccia@zalando.de";
+              name = "Diego Roccia";
               signingKey = "0xF374048AA01A3277";
             };
           };
-          url = {
-            "git@github-zse:zalando-" = {
-              insteadOf = "git@github.com:zalando-";
-              name = "Diego Roccia";
-              email = "diego.roccia@zalando.de";
-            };
-            "git@github-zcn:zalando-cn-" = {
-              insteadOf = "git@github.com:zalando-cn-";
-              name = "Diego Roccia";
-              email = "diego.roccia@zalando.de";
-            };
-            "git@github.bus.zalan.do:" = {
-              insteadOf = "https://github.bus.zalan.do/";
-            };
-            "ssh://git@github.bus.zalan.do/" = {
-              insteadOf = "https://github.bus.zalan.do/";
-            };
+        }
+      ];
+      extraConfig = {
+        url = {
+          "git@github-zse:zalando-" = {
+            insteadOf = "git@github.com:zalando-";
+            name = "Diego Roccia";
+            email = "diego.roccia@zalando.de";
           };
-          commit = {
-            gpgSign = true;
+          "git@github-zcn:zalando-cn-" = {
+            insteadOf = "git@github.com:zalando-cn-";
+            name = "Diego Roccia";
+            email = "diego.roccia@zalando.de";
+          };
+          "git@github.bus.zalan.do:" = {
+            insteadOf = "https://github.bus.zalan.do/";
+            name = "Diego Roccia";
+            email = "diego.roccia@zalando.de";
           };
         };
+        commit = {
+          gpgSign = true;
+        };
+      };
     };
     lazygit.enable = true;
     taskwarrior = {
@@ -259,8 +269,6 @@
     };
   };
 
-  # services.gpg-agent = {
-
   services = {
     wlsunset = {
       enable = true;
@@ -316,3 +324,4 @@
     extraConfig = (builtins.readFile ./resources/hyprland.conf);
   };
 }
+
