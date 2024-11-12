@@ -123,7 +123,17 @@
           };
         }
         {
-          condition = "gitdir:~/code/ghe/";
+          condition = "hasconfig:remote.*.url:git@github.bus.zalan.do:*/**";
+          contents = {
+            user = {
+              email = "diego.roccia@zalando.de";
+              name = "Diego Roccia";
+              signingKey = "0xF374048AA01A3277";
+            };
+          };
+        }
+        {
+          condition = "hasconfig:remote.*.url:git@github.com:zalando-cn-*/**";
           contents = {
             user = {
               email = "diego.roccia@zalando.de";
