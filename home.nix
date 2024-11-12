@@ -111,29 +111,40 @@
       enable = true;
       userName = "Diego Roccia";
       userEmail = "diego.roccia@gmail.com";
-      extraConfig = {
-        url = {
-          "git@github-zse:zalando-" = {
-            insteadOf = "git@github.com:zalando-";
-            name = "Diego Roccia";
-            email = "diego.roccia@zalando.de";
+      extraConfig =
+        {
+          user = {
+            "personal" = {
+              email = "diego.roccia@gmail.com";
+              signingKey = "0xC9A64AACCCCE89E3";
+            };
+            "work" = {
+              email = "diego.roccia@zalando.de";
+              signingKey = "0xF374048AA01A3277";
+            };
           };
-          "git@github-zcn:zalando-cn-" = {
-            insteadOf = "git@github.com:zalando-cn-";
-            name = "Diego Roccia";
-            email = "diego.roccia@zalando.de";
+          url = {
+            "git@github-zse:zalando-" = {
+              insteadOf = "git@github.com:zalando-";
+              name = "Diego Roccia";
+              email = "diego.roccia@zalando.de";
+            };
+            "git@github-zcn:zalando-cn-" = {
+              insteadOf = "git@github.com:zalando-cn-";
+              name = "Diego Roccia";
+              email = "diego.roccia@zalando.de";
+            };
+            "git@github.bus.zalan.do:" = {
+              insteadOf = "https://github.bus.zalan.do/";
+            };
+            "ssh://git@github.bus.zalan.do/" = {
+              insteadOf = "https://github.bus.zalan.do/";
+            };
           };
-          "git@github.bus.zalan.do:" = {
-            insteadOf = "https://github.bus.zalan.do/";
-          };
-          "ssh://git@github.bus.zalan.do/" = {
-            insteadOf = "https://github.bus.zalan.do/";
+          commit = {
+            gpgSign = true;
           };
         };
-        commit = {
-          gpgSign = true;
-        };
-      };
     };
     lazygit.enable = true;
     taskwarrior = {
