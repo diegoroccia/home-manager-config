@@ -52,6 +52,7 @@
       gh
       imgcat
       jq
+      podman
 
       # Fonts
       noto-fonts

@@ -6,6 +6,7 @@
       ports = [
         "7575:7575"
       ];
+      autoStart = true;
     };
   };
 }

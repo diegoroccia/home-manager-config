@@ -5,3 +5,10 @@ Some GUI applications, such as Google Chrome and Electron-based apps, may fail t
 ```bash
 echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
 ```
+
+## Additional packages
+
+these need to be installed system wide
+- uidmap
+
+```
