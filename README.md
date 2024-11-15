@@ -12,3 +12,5 @@ these need to be installed system wide
 - uidmap
 
 ```
+
+I also dumped the list of packages in [PACKAGES.md](./PACKAGES.md)

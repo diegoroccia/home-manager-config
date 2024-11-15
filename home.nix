@@ -143,6 +143,16 @@
             };
           };
         }
+        {
+          condition = "gitdir:~/code/ghe/";
+          contents = {
+            user = {
+              email = "diego.roccia@zalando.de";
+              name = "Diego Roccia";
+              signingKey = "0xF374048AA01A3277";
+            };
+          };
+        }
       ];
       extraConfig = {
         url = {
@@ -204,6 +214,7 @@
       shellAliases = {
         "hms" = "home-manager switch -b backup --flake ~/.config/home-manager";
       };
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       antidote = {
         enable = true;
@@ -226,8 +237,14 @@
 
   xdg = {
     enable = true;
-    mimeApps.enable = true;
-
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/html" = "google-chrome.desktop";
+        "x-scheme-handler/http" = "google-chrome.desktop";
+        "x-scheme-handler/https" = "google-chrome.desktop";
+      };
+    };
     configFile = {
       "environment.d/envvars.conf" = {
         text = ''
@@ -314,7 +331,24 @@
       enable = true;
       stylePath = "${pkgs.swayosd}/etc/xdg/swayosd/style.css";
     };
-    podman = import ./podman.nix;
+    podman = {
+      enable = true;
+      containers = {
+        homarr = {
+          image = "ghcr.io/ajnart/homarr:latest";
+          ports = [
+            "7575:7575"
+          ];
+          volumes = [
+            "/var/run/docker.sock:/var/run/docker.sock"
+            "${config.xdg.dataHome}/homarr/configs:/app/data/configs"
+            "${config.xdg.dataHome}/homarr/icons:/app/public/icons"
+            "${config.xdg.dataHome}/homarr/data:/data"
+          ];
+          autoStart = true;
+        };
+      };
+    };
   };
 
   systemd = {
