@@ -1,6 +1,6 @@
 { inputs, config, pkgs, nixgl, lib, ... }: {
 
-  packages = {
+  programs = {
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -40,4 +40,4 @@
       };
     };
   };
-};
+}
