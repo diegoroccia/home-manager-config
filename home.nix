@@ -215,6 +215,8 @@
       initExtra = (builtins.readFile ./resources/zshrc);
       shellAliases = {
         "hms" = "home-manager switch -b backup --flake ~/.config/home-manager";
+        "gp" = "git pull";
+        "gpp" = "git push";
       };
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
