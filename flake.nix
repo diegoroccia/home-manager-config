@@ -51,6 +51,7 @@
         };
         modules = [
           ./home.nix
+          ./zsh.nix
           catppuccin.homeManagerModules.catppuccin
         ];
       };
