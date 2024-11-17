@@ -35,6 +35,7 @@
       hyprpicker
       rofi-wayland
       networkmanagerapplet
+      waypaper
 
 
 
@@ -53,6 +54,7 @@
       imgcat
       jq
       podman
+      onefetch
 
       # Fonts
       noto-fonts
@@ -216,6 +218,16 @@
       };
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+      history = {
+        append = true;
+        extended = true;
+        ignoreDups = true;
+        ignorePatterns = [
+          "rm -rf"
+          "rm *"
+        ];
+        share = true;
+      };
       antidote = {
         enable = true;
         plugins = [
@@ -269,6 +281,24 @@
           ZDOTDIR="$HOME/.config/zsh"
         '';
       };
+      "waypaper/config.ini" = {
+        text = ''
+          [Settings]
+          language = en
+          folder = ~/Pictures/wallpapers
+          backend = hyprpaper
+          monitors = All
+          fill = Fill
+          sort = name
+          color = #ffffff
+          subfolders = True
+          number_of_columns = 3
+          post_command = 
+          show_hidden = False
+          show_gifs_only = False
+          use_xdg_state = True
+        '';
+      };
     };
 
     portal = {
@@ -312,16 +342,16 @@
         ipc = "on";
         splash = false;
         splash_offset = 2.0;
-        preload = [
-          "~/Pictures/wallpapers/wp7058517-dragon-ball-minimalist-art-wallpapers.jpg"
-          "~/Pictures/wallpapers/wp4957443-minimalist-desktop-wallpapers.jpg"
-          "~/Pictures/wallpapers/wp5693139-minimalist-desktop-hd-wallpapers.jpg"
-        ];
-        wallpaper = [
-          "eDP-1,                                                 ~/Pictures/wallpapers/wp7058517-dragon-ball-minimalist-art-wallpapers.jpg"
-          "desc:LG Electronics LG Ultra HD 0x000122C8,            ~/Pictures/wallpapers/wp4957443-minimalist-desktop-wallpapers.jpg"
-          "desc:Lenovo Group Limited LEN T23i-20 VNA66F1D,        ~/Pictures/wallpapers/wp5693139-minimalist-desktop-hd-wallpapers.jpg"
-        ];
+        # preload = [
+        #   "~/Pictures/wallpapers/wp7058517-dragon-ball-minimalist-art-wallpapers.jpg"
+        #   "~/Pictures/wallpapers/wp4957443-minimalist-desktop-wallpapers.jpg"
+        #   "~/Pictures/wallpapers/wp5693139-minimalist-desktop-hd-wallpapers.jpg"
+        # ];
+        # wallpaper = [
+        #   "eDP-1,                                                 ~/Pictures/wallpapers/wp7058517-dragon-ball-minimalist-art-wallpapers.jpg"
+        #   "desc:LG Electronics LG Ultra HD 0x000122C8,            ~/Pictures/wallpapers/wp4957443-minimalist-desktop-wallpapers.jpg"
+        #   "desc:Lenovo Group Limited LEN T23i-20 VNA66F1D,        ~/Pictures/wallpapers/wp5693139-minimalist-desktop-hd-wallpapers.jpg"
+        # ];
       };
     };
     dunst.enable = true;

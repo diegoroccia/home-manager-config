@@ -61,20 +61,20 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # bindkey -M menuselect 'l' vi-forward-char
 #
 #
-# bindkey -v
-# export KEYTIMEOUT=1
-# # autoload -Uz edit-command-line
-# # zle -N edit-command-line
-# # bindkey -M vicmd v edit-command-line
-#
-# autoload -Uz surround
-# zle -N delete-surround surround
-# zle -N add-surround surround
-# zle -N change-surround surround
-# bindkey -M vicmd cs change-surround
-# bindkey -M vicmd ds delete-surround
-# bindkey -M vicmd ys add-surround
-# bindkey -M visual S add-surround
+bindkey -v
+export KEYTIMEOUT=1
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd V edit-command-line
+
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+bindkey -M vicmd cs change-surround
+bindkey -M vicmd ds delete-surround
+bindkey -M vicmd ys add-surround
+bindkey -M visual S add-surround
 #
 # zlogin() { aws configure set credential_process "zalando-aws-cli credential-process $1 ReadOnly" }
 #
