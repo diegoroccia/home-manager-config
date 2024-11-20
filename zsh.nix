@@ -1,6 +1,20 @@
-{ inputs, config, pkgs, nixgl, lib, ... }: {
+{ pkgs, ... }: {
+
+  home.packages = with pkgs; [
+      onefetch
+      chezmoi
+      imgcat
+      gh
+      jq
+      podman
+  ];
 
   programs = {
+    oh-my-posh = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = import ./oh-my-posh.nix;
+    };
     zsh = {
       enable = true;
       enableCompletion = true;

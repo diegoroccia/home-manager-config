@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, nixgl, lib, ... }: {
+{ inputs, config, pkgs, nixgl, ... }: {
 
   imports = [ inputs.ags.homeManagerModules.default ];
 
@@ -37,8 +37,6 @@
       networkmanagerapplet
       waypaper
 
-
-
       # Security
       age
       age-plugin-yubikey
@@ -48,13 +46,7 @@
       gopass-jsonapi
       sops
 
-      # Console
-      chezmoi
-      gh
-      imgcat
-      jq
-      podman
-      onefetch
+      kyverno
 
       # Fonts
       noto-fonts
@@ -194,11 +186,6 @@
     awscli = {
       enable = true;
     };
-    oh-my-posh = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = import ./oh-my-posh.nix;
-    };
     ags = {
       enable = true;
       extraPackages = with pkgs; [
@@ -225,7 +212,6 @@
       "environment.d/envvars.conf" = {
         text = ''
           PATH="$HOME/.nix-profile/bin:$PATH"
-          #XDG_DATA_DIRS="/home/diegoroccia/.nix-profile/share:$XDG_DATA_DIRS:/home/diegoroccia/.nix-profile/share/gsettings-schemas/gsettings-desktop-schemas-47.1"
           NIXOS_OZONE_WL="1";
           WLR_RENDERER_ALLOW_SOFTWARE=1
           MOZ_ENABLE_WAYLAND=1
@@ -306,16 +292,6 @@
         ipc = "on";
         splash = false;
         splash_offset = 2.0;
-        # preload = [
-        #   "~/Pictures/wallpapers/wp7058517-dragon-ball-minimalist-art-wallpapers.jpg"
-        #   "~/Pictures/wallpapers/wp4957443-minimalist-desktop-wallpapers.jpg"
-        #   "~/Pictures/wallpapers/wp5693139-minimalist-desktop-hd-wallpapers.jpg"
-        # ];
-        # wallpaper = [
-        #   "eDP-1,                                                 ~/Pictures/wallpapers/wp7058517-dragon-ball-minimalist-art-wallpapers.jpg"
-        #   "desc:LG Electronics LG Ultra HD 0x000122C8,            ~/Pictures/wallpapers/wp4957443-minimalist-desktop-wallpapers.jpg"
-        #   "desc:Lenovo Group Limited LEN T23i-20 VNA66F1D,        ~/Pictures/wallpapers/wp5693139-minimalist-desktop-hd-wallpapers.jpg"
-        # ];
       };
     };
     dunst.enable = true;
