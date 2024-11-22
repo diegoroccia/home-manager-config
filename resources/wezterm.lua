@@ -6,7 +6,7 @@ config.automatically_reload_config = true
 config.front_end = "OpenGL"
 
 -- don't care about tabs
-config.enable_tab_bar = true
+config.enable_tab_bar = false
 
 config.launch_menu = {
 	{
@@ -68,7 +68,7 @@ config.window_padding = {
 }
 
 config.leader = { key = "a", mods = "CTRL" }
-config.keys = require("keys")
+-- config.keys = require("keys")
 
 config.tiling_desktop_environments = {
 	"X11 LG3D",

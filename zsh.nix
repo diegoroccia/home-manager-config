@@ -1,12 +1,14 @@
 { pkgs, ... }: {
 
   home.packages = with pkgs; [
-      onefetch
-      chezmoi
-      imgcat
-      gh
-      jq
-      podman
+    onefetch
+    chezmoi
+    imgcat
+    gh
+    jq
+    podman
+    tmux
+    neovim
   ];
 
   programs = {
@@ -27,6 +29,8 @@
         "gpp" = "git push";
         "gcp" = "git commit -am '`date`'; git push";
         "docker" = "podman";
+        "vim" = "nvim";
+        "v" = "nvim";
       };
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;

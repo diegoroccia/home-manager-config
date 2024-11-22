@@ -23,19 +23,17 @@
       # Core
       gsettings-desktop-schemas
       dconf
-      xdg-desktop-portal
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-wlr
 
       # GUI
-      inputs.wezterm.packages.${pkgs.system}.default
       dunst
-      google-chrome
       hyprpicker
-      rofi-wayland
+      hyprpaper
       networkmanagerapplet
       waypaper
+      obsidian
+
+      wireplumber
+      pavucontrol
 
       # Security
       age
@@ -45,9 +43,15 @@
       gopass
       gopass-jsonapi
       sops
+      gnupg
 
       kyverno
-      tmux
+
+      python3
+      pipx
+      cargo
+      nodejs_22
+
 
       # Fonts
       noto-fonts
@@ -95,6 +99,10 @@
     };
     bat.enable = true;
     btop.enable = true;
+
+    chromium = {
+      enable = true;
+    };
     browserpass.enable = true;
     firefox.enable = true;
     fzf.enable = true;
@@ -184,6 +192,13 @@
         "github.bus.zalan.do"
       ];
     };
+
+    rofi = {
+      enable = true;
+      pass = {
+        enable = true;
+      };
+    };
     awscli = {
       enable = true;
     };
@@ -194,6 +209,11 @@
         accountsservice
       ];
       systemd.enable = true;
+    };
+    wezterm = {
+      enable = true;
+      package = inputs.wezterm.packages.${pkgs.system}.default;
+      extraConfig = (builtins.readFile ./resources/wezterm.lua);
     };
   };
 
@@ -255,16 +275,8 @@
     portal = {
       enable = true;
       extraPortals = [
-        pkgs.xdg-desktop-portal
         pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-wlr
-      ];
-      configPackages = [
-        pkgs.xdg-desktop-portal
-        pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-wlr
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
       ];
       xdgOpenUsePortal = true;
       config.common.default = "*";
@@ -286,6 +298,19 @@
     };
     blanket.enable = true;
     blueman-applet.enable = true;
+    gnome-keyring.enable = true;
+    gpg-agent = {
+      enable = true;
+      enableSshSupport = true;
+      enableZshIntegration = true;
+    };
+    home-manager = {
+      autoUpgrade = {
+        enable = true;
+        frequency = "weekly";
+      };
+    };
+
     hyprpaper = {
       enable = true;
 
@@ -330,7 +355,8 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = (config.lib.nixGL.wrap pkgs.hyprland);
+    #package = (config.lib.nixGL.wrap pkgs.hyprland);
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     systemd = {
       enable = true;
       enableXdgAutostart = true;
@@ -338,6 +364,32 @@
     };
     xwayland.enable = true;
     extraConfig = (builtins.readFile ./resources/hyprland.conf);
+    settings = {
+      dwindle = {
+        pseudotile = "yes";
+        preserve_split = "yes";
+        # no_gaps_when_only = "yes";
+      };
+
+
+      input = {
+        kb_layout = "us";
+        follow_mouse = 1;
+        touchpad = {
+          natural_scroll = "no";
+        };
+        sensitivity = 0;
+        force_no_accel = 1;
+        numlock_by_default = true;
+      };
+      misc = {
+        vrr = 0;
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        force_default_wallpaper = 0;
+      };
+
+    };
   };
 }
 
