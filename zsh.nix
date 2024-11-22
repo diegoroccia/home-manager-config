@@ -25,6 +25,8 @@
         "hms" = "home-manager switch -b backup --flake ~/.config/home-manager";
         "gp" = "git pull";
         "gpp" = "git push";
+        "gcp" = "git commit -am '`date`'; git push";
+        "docker" = "podman";
       };
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
