@@ -47,6 +47,7 @@
       sops
 
       kyverno
+      tmux
 
       # Fonts
       noto-fonts

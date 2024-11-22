@@ -103,4 +103,3 @@ eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
 
 # Created by `pipx` on 2024-10-18 11:30:23
 export PATH="$PATH:/home/diegoroccia/.local/bin"
-source $ZDOTDIR/wezterm.sh
