@@ -10,6 +10,7 @@ echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
 
 these need to be installed system wide
 - uidmap
+- blueman
 
 
 I also dumped the list of packages in [PACKAGES.md](./PACKAGES.md)
