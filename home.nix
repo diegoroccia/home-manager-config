@@ -8,11 +8,6 @@
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
 
-  catppuccin.flavor = "macchiato";
-  catppuccin.accent = "lavender";
-  catppuccin.enable = true;
-  catppuccin.pointerCursor.enable = true;
-
   home = {
     username = "diegoroccia";
     homeDirectory = "/home/diegoroccia";
@@ -31,6 +26,7 @@
       networkmanagerapplet
       waypaper
       obsidian
+      waybar
 
       wireplumber
       pavucontrol
@@ -68,6 +64,16 @@
     ];
   };
 
+  catppuccin.flavor = "macchiato";
+  catppuccin.accent = "lavender";
+  catppuccin.enable = true;
+  catppuccin.pointerCursor.enable = true;
+
+  gtk.enable = true;
+  qt.enable = true;
+  qt.style.name = "kvantum";
+  qt.platformTheme.name = "kvantum";
+
 
   accounts.email.accounts = {
     "diego.roccia@zalando.de" = {
@@ -102,7 +108,9 @@
 
     chromium = {
       enable = true;
+      package = pkgs.google-chrome;
     };
+
     browserpass.enable = true;
     firefox.enable = true;
     fzf.enable = true;
@@ -184,6 +192,7 @@
     taskwarrior = {
       enable = true;
       package = pkgs.taskwarrior3;
+      colorTheme = "dark-blue-256";
     };
 
     go = {
@@ -268,6 +277,11 @@
           show_hidden = False
           show_gifs_only = False
           use_xdg_state = True
+        '';
+      };
+      "containers/registries.conf" = {
+        text = ''
+          unqualified-search-registries = ["docker.io", "quay.io", "ghcr.io"]
         '';
       };
     };
@@ -356,7 +370,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     #package = (config.lib.nixGL.wrap pkgs.hyprland);
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = (config.lib.nixGL.wrap inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland);
     systemd = {
       enable = true;
       enableXdgAutostart = true;

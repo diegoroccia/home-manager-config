@@ -9,6 +9,7 @@
     podman
     tmux
     neovim
+    wl-clipboard
   ];
 
   programs = {
@@ -31,6 +32,7 @@
         "docker" = "podman";
         "vim" = "nvim";
         "v" = "nvim";
+        "cat" = "bat";
       };
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
