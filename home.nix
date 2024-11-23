@@ -26,7 +26,6 @@
       networkmanagerapplet
       waypaper
       obsidian
-      waybar
 
       wireplumber
       pavucontrol
@@ -218,6 +217,16 @@
         accountsservice
       ];
       systemd.enable = true;
+    };
+    waybar = {
+      enable = true;
+      style = (builtins.readFile ./resources/waybar-style.css);
+      settings = import ./resources/waybar-config.nix;
+
+      systemd = {
+        enable = true;
+      };
+
     };
     wezterm = {
       enable = true;
