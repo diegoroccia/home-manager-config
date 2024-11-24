@@ -26,6 +26,8 @@
       networkmanagerapplet
       waypaper
       obsidian
+      blueman
+      xfce.thunar
 
       wireplumber
       pavucontrol
@@ -68,7 +70,17 @@
   catppuccin.enable = true;
   catppuccin.pointerCursor.enable = true;
 
-  gtk.enable = true;
+  gtk = {
+    enable = true;
+    theme = {
+      name = "catppuccin-macchiato-lavender-compact";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "lavender" ];
+        size = "compact";
+        variant = "macchiato";
+      };
+    };
+  };
   qt.enable = true;
   qt.style.name = "kvantum";
   qt.platformTheme.name = "kvantum";
@@ -266,7 +278,6 @@
           QT_WAYLAND_DISABLE_WINDOWDECORATION=1
           QT_QPA_PLATFORMTHEME=qt5ct
           XCURSOR_SIZE=24
-          GTK_THEME=Catppuccin-Mocha-Standard-Teal-Dark
           ZDOTDIR="$HOME/.config/zsh"
         '';
       };

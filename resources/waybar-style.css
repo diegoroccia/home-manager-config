@@ -18,18 +18,18 @@ window#waybar.hidden {
 #workspaces {
     margin-right: 8px;
     transition: none;
-    background: #383c4a;
+    background: @base;
 }
 
 #workspaces button {
     transition: none;
-    color: #7c818c;
+    color: @text;
     background: transparent;
     padding: 5px;
 }
 
 #workspaces button.persistent {
-    color: #7c818c;
+    color: @test;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
@@ -38,52 +38,20 @@ window#waybar.hidden {
     box-shadow: inherit;
     text-shadow: inherit;
     border-radius: inherit;
-    color: #383c4a;
-    background: #7c818c;
+    color: @base;
+    background: @teal;
 }
 
 #workspaces button.focused {
-    color: white;
-}
-
-#language {
-    padding-left: 16px;
-    padding-right: 8px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#keyboard-state {
-    margin-right: 8px;
-    padding-right: 16px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#custom-pacman {
-    padding-left: 16px;
-    padding-right: 8px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
-}
-
-#custom-mail {
-    margin-right: 8px;
-    padding-right: 16px;
-    transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @teal;
 }
 
 #mode {
     padding-left: 16px;
     padding-right: 16px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @base;
 }
 
 #clock {
@@ -91,15 +59,15 @@ window#waybar.hidden {
     padding-left: 16px;
     padding-right: 16px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @base;
 }
 
 #custom-weather {
     padding-right: 16px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @base;
 }
 
 #pulseaudio {
@@ -107,13 +75,13 @@ window#waybar.hidden {
     padding-left: 16px;
     padding-right: 16px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @base;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    background-color: @red;
+    color: @maroon;
 }
 
 #custom-mem {
@@ -121,8 +89,8 @@ window#waybar.hidden {
     padding-left: 16px;
     padding-right: 16px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @base;
 }
 
 #temperature {
@@ -130,12 +98,12 @@ window#waybar.hidden {
     padding-left: 16px;
     padding-right: 16px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @base;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: @red;
 }
 
 #backlight {
@@ -143,8 +111,8 @@ window#waybar.hidden {
     padding-left: 16px;
     padding-right: 16px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @base;
 }
 
 #battery {
@@ -152,23 +120,23 @@ window#waybar.hidden {
     padding-left: 16px;
     padding-right: 16px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @base;
 }
 
 #battery.charging {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: @text;
+    background-color: @green;
 }
 
 #battery.warning:not(.charging) {
-    background-color: #ffbe61;
+    background-color: @yello;
     color: black;
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @red;
+    color: @text;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -180,13 +148,13 @@ window#waybar.hidden {
     padding-left: 16px;
     padding-right: 16px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @base;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: @text;
+        color: @crust;
     }
 }

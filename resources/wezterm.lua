@@ -53,7 +53,7 @@ config.font = wezterm.font_with_fallback({
 	"Font Awesome 6 Free",
 })
 
-config.font_size = 14
+config.font_size = 12
 
 config.line_height = 1.5
 config.underline_position = "-5px"

@@ -1,11 +1,12 @@
-{ mainBar = {
+{
+  mainBar = {
     margin = "5 5 5 5";
-    modules-left = ["hyprland/workspaces"];
-    modules-center = [];
-    modules-right = ["pulseaudio"  "battery"  "clock"  "tray"];
+    modules-left = [ "hyprland/workspaces" ];
+    modules-center = [ ];
+    modules-right = [ "pulseaudio" "battery" "clock" "tray" ];
 
     "hyprland/workspaces" = {
-        disable-scroll = true;
+      disable-scroll = true;
     };
 
     "sway/language" = {
@@ -15,69 +16,69 @@
     };
 
     "keyboard-state" = {
-        capslock = true;
-        format = "{name} {icon} ";
-        format-icons = {
-            locked = " ";
-            unlocked = "";
-        };
+      capslock = true;
+      format = "{name} {icon} ";
+      format-icons = {
+        locked = " ";
+        unlocked = "";
+      };
     };
 
     "clock" = {
-        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        format = "{:%a, %d %b, %I:%M %p}";
+      tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+      format = "{:%a, %d %b, %I:%M %p}";
     };
 
     pulseaudio = {
-        reverse-scrolling = 1;
-        format = "{volume}% {icon} {format_source}";
-        format-bluetooth = "{volume}% {icon} {format_source}";
-        format-bluetooth-muted = " {icon} {format_source}";
-        format-muted = "婢 {format_source}";
-        format-source = "{volume}% ";
-        format-source-muted = "";
-        format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = ["奄"  "奔"  "墳"];
-        };
-        on-click = "pavucontrol";
-        min-length = 13;
+      reverse-scrolling = 1;
+      format = "{volume}% {icon} {format_source}";
+      format-bluetooth = "{volume}% {icon} {format_source}";
+      format-bluetooth-muted = " {icon} {format_source}";
+      format-muted = "婢 {format_source}";
+      format-source = "{volume}% ";
+      format-source-muted = "";
+      format-icons = {
+        headphone = "";
+        hands-free = "";
+        headset = "";
+        phone = "";
+        portable = "";
+        car = "";
+        default = [ "奄" "奔" "墳" ];
+      };
+      on-click = "pavucontrol";
+      min-length = 13;
     };
 
     temperature = {
-        critical-threshold = 80;
-        format = "{temperatureC}°C {icon}";
-        format-icons = [""  ""  ""  ""  ""];
-        tooltip = false;
+      critical-threshold = 80;
+      format = "{temperatureC}°C {icon}";
+      format-icons = [ "" "" "" "" "" ];
+      tooltip = false;
     };
 
     backlight = {
-        device = "intel_backlight";
-        format = "{percent}% {icon}";
-        format-icons = ["" "" "" ""  ""  ""  ""];
-        min-length = 7;
+      device = "intel_backlight";
+      format = "{percent}% {icon}";
+      format-icons = [ "" "" "" "" "" "" "" ];
+      min-length = 7;
     };
 
     battery = {
-        states = {
-            warning = 30;
-            critical = 15;
-        };
-        format = "{capacity}% {icon}";
-        format-charging = "{capacity}% ";
-        format-plugged = "{capacity}% ";
-        format-alt = "{time} {icon}";
-        format-icons = [""  ""  ""  ""  ""  ""  ""  ""  ""  ""];
+      states = {
+        warning = 30;
+        critical = 15;
+      };
+      format = "{capacity}% {icon}";
+      format-charging = "{capacity}% ";
+      format-plugged = "{capacity}% ";
+      format-alt = "{time} {icon}";
+      format-icons = [ "" "" "" "" "" "" "" "" "" "" ];
     };
 
     tray = {
-        icon-size = 16;
-        spacing = 0;
+      icon-size = 16;
+      spacing = 0;
     };
-};
+  };
 }
