@@ -10,15 +10,15 @@
 
   nixpkgs.overlays = [
 
-( final: prev: {
-  flameshot = prev.flameshot.overrideAttrs (previousAttrs: {
-    cmakeFlags = [
-      "-DUSE_WAYLAND_CLIPBOARD=1"
-      "-DUSE_WAYLAND_GRIM=1"
-    ];
-    buildInputs = previousAttrs.buildInputs ++ [ final.libsForQt5.kguiaddons ];
-  });
-} )
+    (final: prev: {
+      flameshot = prev.flameshot.overrideAttrs (previousAttrs: {
+        cmakeFlags = [
+          "-DUSE_WAYLAND_CLIPBOARD=1"
+          "-DUSE_WAYLAND_GRIM=1"
+        ];
+        buildInputs = previousAttrs.buildInputs ++ [ final.libsForQt5.kguiaddons ];
+      });
+    })
   ];
 
   home = {
@@ -252,8 +252,8 @@
     gpg = {
       enable = true;
       mutableKeys = true;
-    mutableTrust = true;
-  };
+      mutableTrust = true;
+    };
     ags = {
       enable = true;
       extraPackages = with pkgs; [
@@ -369,7 +369,21 @@
       enable = true;
       enableSshSupport = true;
       enableZshIntegration = true;
+
       pinentryPackage = pkgs.pinentry-rofi;
+      sshKeys = [
+        "3D54CF1DF6DC06B40CF596714C77FC864BD2192D"
+        "DBA1FC622050CAD3118969849DDEADB57A827AB0"
+        "25FB15E8D62F2883A52ACD1709FCE4562FAEF7CC"
+        "61BD77CB7E3C92ED808D07142022395009086AEA"
+        "810816D8FF2104E331F9C823CC6723EB7BCA4E2D"
+        "29648853DD76FEE00CAB329F30A100C8D835BCC6"
+        "05836BF42B2E7EE37372720D3DA6FA89D446C46B"
+        "AEACECC48B2A943AC83D0BB1E471D9CD4E730CF3"
+        "C0BC69655A10317768FB8C7DE11DCE26E8E3BFCB"
+        "122C3431F75F2B750F4A72ABC03E38C79980F617"
+        "12CF5CC16E72856FB3E0576E17B5B7A0CF9B5DF1"
+      ];
     };
     home-manager = {
       autoUpgrade = {
