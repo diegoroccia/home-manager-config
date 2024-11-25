@@ -1,6 +1,6 @@
 {
   mainBar = {
-    margin = "5 5 5 5";
+    margin = "5 5 0 5";
     modules-left = [ "hyprland/workspaces" ];
     modules-center = [ ];
     modules-right = [ "pulseaudio" "battery" "clock" "tray" ];

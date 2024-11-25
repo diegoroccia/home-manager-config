@@ -8,6 +8,19 @@
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
 
+  nixpkgs.overlays = [
+
+( final: prev: {
+  flameshot = prev.flameshot.overrideAttrs (previousAttrs: {
+    cmakeFlags = [
+      "-DUSE_WAYLAND_CLIPBOARD=1"
+      "-DUSE_WAYLAND_GRIM=1"
+    ];
+    buildInputs = previousAttrs.buildInputs ++ [ final.libsForQt5.kguiaddons ];
+  });
+} )
+  ];
+
   home = {
     username = "diegoroccia";
     homeDirectory = "/home/diegoroccia";
@@ -27,7 +40,11 @@
       waypaper
       obsidian
       blueman
+      wlr-randr
       xfce.thunar
+      flameshot
+      grim
+      slurp
 
       wireplumber
       pavucontrol
@@ -41,6 +58,11 @@
       gopass-jsonapi
       sops
       gnupg
+      yubikey-manager
+      age-plugin-yubikey
+      pinentry-rofi
+      qmk
+
 
       kyverno
 
@@ -222,6 +244,16 @@
     awscli = {
       enable = true;
     };
+
+    ssh = {
+      enable = true;
+      extraConfig = (builtins.readFile ./resources/ssh/config);
+    };
+    gpg = {
+      enable = true;
+      mutableKeys = true;
+    mutableTrust = true;
+  };
     ags = {
       enable = true;
       extraPackages = with pkgs; [
@@ -337,6 +369,7 @@
       enable = true;
       enableSshSupport = true;
       enableZshIntegration = true;
+      pinentryPackage = pkgs.pinentry-rofi;
     };
     home-manager = {
       autoUpgrade = {

@@ -1,0 +1,34 @@
+Host 192.168.1.10
+	User pi
+
+Host 192.168.1.11
+	User diego
+	port 2222
+
+Host 192.168.1.1
+	User root
+
+Host git-codecommit.ap-east-1.amazonaws.com
+	User APKASFIXDBLC3XT477OS
+
+Host github.com
+    User git
+    IdentityFile ~/.ssh/github-personal.pub
+    IdentitiesOnly yes
+
+Host github.bus.zalan.do
+    User git
+    IdentityFile ~/.ssh/github-ghe
+    IdentitiesOnly yes
+
+Host github-zse
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github-zse.pub
+    IdentitiesOnly yes
+
+Host github-zcn
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github-zcn.pub
+    IdentitiesOnly yes

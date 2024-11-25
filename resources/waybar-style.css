@@ -1,160 +1,130 @@
 * {
-    border: none;
-    border-radius: 3px;
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "JetBrainsMono Nerd Font";
-    min-height: 18px;
-    font-size: 12px;
+  font-family: "JetBrainsMono Nerd Font";
+  min-height: 18px;
+  font-size: 12px;
+  border-radius: 4px;
 }
 
 window#waybar {
-    background: transparent;
+  background: transparent;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  border-bottom: 2px;
+  border-color: @teal;
 }
 
 #workspaces {
-    margin-right: 8px;
-    transition: none;
-    background: @base;
+  margin-right: 8px;
+  transition: none;
+  background: @base;
 }
 
 #workspaces button {
-    transition: none;
-    color: @text;
-    background: transparent;
-    padding: 5px;
+  transition: none;
+  color: @surface2;
+  background: transparent;
+  padding: 5px;
 }
 
 #workspaces button.persistent {
-    color: @test;
+  color: @test;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-    transition: none;
-    box-shadow: inherit;
-    text-shadow: inherit;
-    border-radius: inherit;
-    color: @base;
-    background: @teal;
+  transition: none;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  color: @base;
+  background: @teal;
 }
 
 #workspaces button.focused {
-    color: @teal;
+  color: @teal;
+}
+
+#workspaces button.active {
+  color: @green;
 }
 
 #mode {
-    padding-left: 16px;
-    padding-right: 16px;
-    transition: none;
-    color: @text;
-    background: @base;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: none;
+  color: @text;
+  background: @base;
 }
 
 #clock {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    transition: none;
-    color: @text;
-    background: @base;
-}
-
-#custom-weather {
-    padding-right: 16px;
-    transition: none;
-    color: @text;
-    background: @base;
+  margin-right: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: none;
+  color: @text;
+  background: @base;
 }
 
 #pulseaudio {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    transition: none;
-    color: @text;
-    background: @base;
+  margin-right: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: none;
+  color: @text;
+  background: @base;
 }
 
 #pulseaudio.muted {
-    background-color: @red;
-    color: @maroon;
-}
-
-#custom-mem {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    transition: none;
-    color: @text;
-    background: @base;
-}
-
-#temperature {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    transition: none;
-    color: @text;
-    background: @base;
-}
-
-#temperature.critical {
-    background-color: @red;
-}
-
-#backlight {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    transition: none;
-    color: @text;
-    background: @base;
+  background-color: @red;
+  color: @maroon;
 }
 
 #battery {
-    margin-right: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    transition: none;
-    color: @text;
-    background: @base;
+  margin-right: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: none;
+  color: @text;
+  background: @base;
 }
 
 #battery.charging {
-    color: @text;
-    background-color: @green;
+  color: @text;
+  background-color: @green;
 }
 
 #battery.warning:not(.charging) {
-    background-color: @yello;
-    color: black;
+  background-color: @yello;
+  color: black;
 }
 
 #battery.critical:not(.charging) {
-    background-color: @red;
-    color: @text;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  background-color: @red;
+  color: @text;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #tray {
-    padding-left: 16px;
-    padding-right: 16px;
-    transition: none;
-    color: @text;
-    background: @base;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: none;
+  color: @text;
+  background: @base;
 }
 
 @keyframes blink {
-    to {
-        background-color: @text;
-        color: @crust;
-    }
+  to {
+    background-color: @text;
+    color: @crust;
+  }
 }
