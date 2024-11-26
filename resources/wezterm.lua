@@ -5,6 +5,8 @@ config.enable_wayland = true
 config.automatically_reload_config = true
 config.front_end = "OpenGL"
 
+config.mux_enable_ssh_agent = false
+
 -- don't care about tabs
 config.enable_tab_bar = false
 
