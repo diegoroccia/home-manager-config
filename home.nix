@@ -459,12 +459,7 @@
       variables = [ "--all" ];
     };
     xwayland.enable = true;
-    extraConfig = (builtins.readFile ./resources/hyprland.conf);
-    plugins = [
-      inputs.hyprland-plugin-hyprfocus.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
-    ];
     settings = {
-
       general = {
         border_size = 1;
         "col.active_border" = "$accent 45deg";
@@ -493,7 +488,6 @@
           range = 0;
         };
       };
-
       animations = {
         enabled = true;
         bezier = "overshot,0.05,0.9,0.1,1.1";
@@ -502,7 +496,6 @@
           "workspaces,1,3,overshot,slide"
         ];
       };
-
       dwindle = {
         pseudotile = "yes";
         preserve_split = "yes";
@@ -531,8 +524,11 @@
         mouse_move_focuses_monitor = true;
         vrr = 2;
       };
-
     };
+    plugins = [
+      inputs.hyprland-plugin-hyprfocus.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
+    ];
+    extraConfig = (builtins.readFile ./resources/hyprland.conf);
   };
 }
 
