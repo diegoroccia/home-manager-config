@@ -314,6 +314,7 @@
           QT_QPA_PLATFORMTHEME=qt5ct
           XCURSOR_SIZE=24
           ZDOTDIR="$HOME/.config/zsh"
+          GTK_THEME=catppuccin-mocha-standard-teal-dark
         '';
       };
       "waypaper/config.ini" = {
@@ -459,29 +460,76 @@
     };
     xwayland.enable = true;
     extraConfig = (builtins.readFile ./resources/hyprland.conf);
+    plugins = [
+      inputs.hyprland-plugin-hyprfocus.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
+    ];
     settings = {
+
+      general = {
+        border_size = 1;
+        "col.active_border" = "$accent 45deg";
+        "col.inactive_border" = "$base";
+        gaps_in = 4;
+        gaps_out = 10;
+        layout = "dwindle";
+        allow_tearing = true;
+        resize_on_border = true;
+      };
+      xwayland = {
+        force_zero_scaling = true;
+      };
+      decoration = {
+        rounding = 4;
+        dim_inactive = false;
+        blur = {
+          special = true;
+        };
+        shadow = {
+          enabled = true;
+          color = "$accent";
+          color_inactive = "$base";
+          sharp = true;
+          offset = "4 4";
+          range = 0;
+        };
+      };
+
+      animations = {
+        enabled = true;
+        bezier = "overshot,0.05,0.9,0.1,1.1";
+        animation = [
+          "windows,1,5,overshot,popin 80%"
+          "workspaces,1,3,overshot,slide"
+        ];
+      };
+
       dwindle = {
         pseudotile = "yes";
         preserve_split = "yes";
-        # no_gaps_when_only = "yes";
       };
-
-
+      gestures = {
+        workspace_swipe = true;
+      };
       input = {
         kb_layout = "us";
+        kb_variant = "intl";
         follow_mouse = 1;
         touchpad = {
-          natural_scroll = "no";
+          natural_scroll = false;
+          disable_while_typing = true;
         };
         sensitivity = 0;
         force_no_accel = 1;
         numlock_by_default = true;
       };
       misc = {
-        vrr = 0;
+        animate_manual_resizes = true;
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         force_default_wallpaper = 0;
+        mouse_move_enables_dpms = true;
+        mouse_move_focuses_monitor = true;
+        vrr = 2;
       };
 
     };

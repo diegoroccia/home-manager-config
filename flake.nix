@@ -18,6 +18,10 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    hyprland-plugin-hyprfocus = {
+      url = "github:pyt0xic/hyprfocus";
+      inputs.hyprland.follows = "hyprland";
+    };
     catppuccin.url = "github:catppuccin/nix";
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
