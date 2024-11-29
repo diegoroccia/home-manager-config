@@ -69,7 +69,7 @@ config.window_padding = {
 	bottom = 20,
 }
 
-config.leader = { key = "a", mods = "CTRL" }
+-- config.leader = { key = "a", mods = "CTRL" }
 -- config.keys = require("keys")
 
 config.tiling_desktop_environments = {
@@ -84,25 +84,25 @@ config.adjust_window_size_when_changing_font_size = false
 
 -- you may also use the "https://github.com/Xarvex/presentation.wez" mirror
 wezterm.plugin.require("https://gitlab.com/xarvex/presentation.wez").apply_to_config(config, {
-	font_size_multiplier = 1.8, -- sets for both "presentation" and "presentation_full"
+	font_size_multiplier = 1.8,                  -- sets for both "presentation" and "presentation_full"
 	presentation = {
 		keybind = { key = "t", mods = "SHIFT|SUPER" }, -- setting a keybind
 	},
 	presentation_full = {
 		font_weight = "Bold",
-		font_size_multiplier = 2.4, -- overwrites "font_size_multiplier" for "presentation_full"
+		font_size_multiplier = 2.4,              -- overwrites "font_size_multiplier" for "presentation_full"
 		keybind = { key = "y", mods = "SHIFT|SUPER" }, -- setting a keybind
 	},
 })
 
 local wezterm = require("wezterm")
 
-wezterm.on("update-right-status", function(window, pane)
-	-- "Wed Mar 3 08:14"
-	local date = wezterm.strftime("%a %b %-d %H:%M ")
-
-	window:set_right_status(wezterm.format({
-		{ Text = wezterm.nerdfonts.fa_clock_o .. " " .. date },
-	}))
-end)
+-- wezterm.on("update-right-status", function(window, pane)
+-- 	-- "Wed Mar 3 08:14"
+-- 	local date = wezterm.strftime("%a %b %-d %H:%M ")
+--
+-- 	window:set_right_status(wezterm.format({
+-- 		{ Text = wezterm.nerdfonts.fa_clock_o .. " " .. date },
+-- 	}))
+-- end)
 return config

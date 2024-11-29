@@ -33,7 +33,7 @@
         };
       };
     };
-    ags.url = "github:Aylur/ags";
+    # ags.url = "github:Aylur/ags";
   };
 
   outputs = { nixpkgs, home-manager, nixgl, catppuccin, ... }@inputs:

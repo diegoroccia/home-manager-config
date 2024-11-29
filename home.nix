@@ -1,25 +1,12 @@
 { inputs, config, pkgs, nixgl, ... }: {
 
-  imports = [ inputs.ags.homeManagerModules.default ];
+  imports = [ ];
 
   targets.genericLinux.enable = true;
 
   nixGL.packages = nixgl.packages;
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
-
-  nixpkgs.overlays = [
-
-    (final: prev: {
-      flameshot = prev.flameshot.overrideAttrs (previousAttrs: {
-        cmakeFlags = [
-          "-DUSE_WAYLAND_CLIPBOARD=1"
-          "-DUSE_WAYLAND_GRIM=1"
-        ];
-        buildInputs = previousAttrs.buildInputs ++ [ final.libsForQt5.kguiaddons ];
-      });
-    })
-  ];
 
   home = {
     username = "diegoroccia";
@@ -30,6 +17,7 @@
 
       # Core
       gsettings-desktop-schemas
+      dconf-editor
       dconf
 
       # GUI
@@ -43,6 +31,7 @@
       blueman
       wlr-randr
       xfce.thunar
+      xfce.tumbler
       flameshot
       grim
       slurp
@@ -90,6 +79,15 @@
     ];
   };
 
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
+  };
+
   catppuccin.flavor = "macchiato";
   catppuccin.accent = "lavender";
   catppuccin.enable = true;
@@ -97,15 +95,18 @@
 
   gtk = {
     enable = true;
-    theme = {
-      name = "catppuccin-macchiato-lavender-compact";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "lavender" ];
-        size = "compact";
-        variant = "macchiato";
-      };
+    catppuccin = {
+      enable = true;
+      flavor = "macchiato";
+      accent = "lavender";
     };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
   };
+
   qt.enable = true;
   qt.style.name = "kvantum";
   qt.platformTheme.name = "kvantum";
@@ -257,14 +258,14 @@
       mutableKeys = true;
       mutableTrust = true;
     };
-    ags = {
-      enable = true;
-      extraPackages = with pkgs; [
-        gtksourceview
-        accountsservice
-      ];
-      systemd.enable = true;
-    };
+    # ags = {
+    #   enable = true;
+    #   extraPackages = with pkgs; [
+    #     gtksourceview
+    #     accountsservice
+    #   ];
+    #   systemd.enable = true;
+    # };
     waybar = {
       enable = true;
       style = (builtins.readFile ./resources/waybar-style.css);
@@ -292,6 +293,7 @@
         "text/html" = "google-chrome.desktop";
         "x-scheme-handler/http" = "google-chrome.desktop";
         "x-scheme-handler/https" = "google-chrome.desktop";
+        "inode/directory" = "thunar";
       };
     };
     configFile = {
@@ -314,7 +316,6 @@
           QT_QPA_PLATFORMTHEME=qt5ct
           XCURSOR_SIZE=24
           ZDOTDIR="$HOME/.config/zsh"
-          GTK_THEME=catppuccin-mocha-standard-teal-dark
         '';
       };
       "waypaper/config.ini" = {
@@ -386,11 +387,11 @@
       enableZshIntegration = true;
       pinentryPackage = pkgs.pinentry-rofi;
       sshKeys = [
-        "05836BF42B2E7EE37372720D3DA6FA89D446C46B"
-        "122C3431F75F2B750F4A72ABC03E38C79980F617"
-        "12CF5CC16E72856FB3E0576E17B5B7A0CF9B5DF1"
-        "25FB15E8D62F2883A52ACD1709FCE4562FAEF7CC"
-        "29648853DD76FEE00CAB329F30A100C8D835BCC6"
+        # "05836BF42B2E7EE37372720D3DA6FA89D446C46B"
+        # "122C3431F75F2B750F4A72ABC03E38C79980F617"
+        # "12CF5CC16E72856FB3E0576E17B5B7A0CF9B5DF1"
+        # "25FB15E8D62F2883A52ACD1709FCE4562FAEF7CC"
+        # "29648853DD76FEE00CAB329F30A100C8D835BCC6"
         "3D54CF1DF6DC06B40CF596714C77FC864BD2192D"
         "61BD77CB7E3C92ED808D07142022395009086AEA"
         "810816D8FF2104E331F9C823CC6723EB7BCA4E2D"
@@ -474,7 +475,7 @@
         force_zero_scaling = true;
       };
       decoration = {
-        rounding = 4;
+        rounding = 2;
         dim_inactive = false;
         blur = {
           special = true;
@@ -524,6 +525,9 @@
         mouse_move_focuses_monitor = true;
         vrr = 2;
       };
+      bind = [
+        "super, b, exec, pkill -SIGUSR1 waybar"
+      ];
     };
     plugins = [
       inputs.hyprland-plugin-hyprfocus.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
