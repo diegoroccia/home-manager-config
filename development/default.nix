@@ -1,4 +1,8 @@
 { ... }:
 
 {
+  imports = [
+    ./git
+    ./python
+  ];
 }
