@@ -1,6 +1,6 @@
 { inputs, config, pkgs, nixgl, ... }: {
 
-  imports = [ ];
+  imports = [ ./development ];
 
   targets.genericLinux.enable = true;
 
@@ -19,13 +19,14 @@
       gsettings-desktop-schemas
       dconf-editor
       dconf
+      glibc
+      dbus
 
       # GUI
       brightnessctl
       dunst
       hyprpicker
       hyprpaper
-      networkmanagerapplet
       waypaper
       obsidian
       blueman
@@ -37,6 +38,7 @@
       slurp
       spotify
       spicetify-cli
+      steam
 
       wireplumber
       pavucontrol
@@ -58,8 +60,6 @@
 
       kyverno
 
-      python3
-      pipx
       cargo
       nodejs_22
 
@@ -89,7 +89,7 @@
   };
 
   catppuccin.flavor = "macchiato";
-  catppuccin.accent = "lavender";
+  catppuccin.accent = "flamingo";
   catppuccin.enable = true;
   catppuccin.pointerCursor.enable = true;
 
@@ -98,7 +98,7 @@
     catppuccin = {
       enable = true;
       flavor = "macchiato";
-      accent = "lavender";
+      accent = "flamingo";
     };
     iconTheme = {
       name = "Papirus-Dark";
@@ -380,7 +380,9 @@
     };
     blanket.enable = true;
     blueman-applet.enable = true;
-    gnome-keyring.enable = true;
+    gnome-keyring = {
+      enable = true;
+    };
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
@@ -414,8 +416,18 @@
         ipc = "on";
         splash = false;
         splash_offset = 2.0;
+        preload = [ 
+          "~/Pictures/wallpapers/0024.jpg" 
+          "~/Pictures/wallpapers/0004.jpg" 
+          "~/Pictures/wallpapers/0014.jpg" 
+          "~/Pictures/wallpapers/0044.jpg" 
+          "~/Pictures/wallpapers/0012.jpg" 
+        ];
+        wallpaper = [ ", ~/Pictures/wallpapers/0012.jpg" ];
       };
+
     };
+
     dunst.enable = true;
     dunst.settings = (import ./resources/dunstrc.nix);
     network-manager-applet.enable = true;
@@ -513,7 +525,6 @@
           disable_while_typing = true;
         };
         sensitivity = 0;
-        force_no_accel = 1;
         numlock_by_default = true;
       };
       misc = {

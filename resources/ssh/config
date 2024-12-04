@@ -20,6 +20,7 @@ Host github.bus.zalan.do
     User git
     IdentityFile ~/.ssh/github-ghe
     IdentitiesOnly yes
+    IdentityAgent none
 
 Host github-zse
     HostName github.com
