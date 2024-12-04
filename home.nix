@@ -1,6 +1,9 @@
 { inputs, config, pkgs, ... }: {
 
-  imports = [ ./development ./console ];
+  imports = [ 
+    ./development 
+    ./console 
+  ];
 
   targets.genericLinux.enable = true;
 
