@@ -23,7 +23,7 @@
       enableCompletion = true;
       enableVteIntegration = true;
       dotDir = ".config/zsh";
-      initExtraFirst = (builtins.readFile ./resources/zshrc);
+      initExtraFirst = (builtins.readFile /resources/zshrc);
       shellAliases = {
         "hms" = "home-manager switch -b backup --flake ~/.config/home-manager";
         "gp" = "git pull";

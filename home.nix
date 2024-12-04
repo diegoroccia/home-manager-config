@@ -1,10 +1,10 @@
-{ inputs, config, pkgs, nixgl, ... }: {
+{ inputs, config, pkgs, ... }: {
 
-  imports = [ ./development ];
+  imports = [ ./development ./console ];
 
   targets.genericLinux.enable = true;
 
-  nixGL.packages = nixgl.packages;
+  nixGL.packages = inputs.nixgl.packages;
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
 

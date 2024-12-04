@@ -33,14 +33,12 @@
         };
       };
     };
-    # ags.url = "github:Aylur/ags";
   };
 
   outputs = { nixpkgs, home-manager, nixgl, catppuccin, ... }@inputs:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-        overlays = [ nixgl.overlay ];
         config = {
           allowUnfree = true;
           allowUnfreePredicate = _: true;
@@ -53,12 +51,10 @@
       homeConfigurations."diegoroccia" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
-          inherit nixpkgs inputs nixgl;
+          inherit nixpkgs inputs;
         };
         modules = [
           ./home.nix
-          ./zsh.nix
-          ./git.nix
           catppuccin.homeManagerModules.catppuccin
         ];
       };
