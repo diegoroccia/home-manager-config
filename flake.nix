@@ -7,6 +7,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+    };
     nixgl = {
       url = "github:nix-community/nixgl";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +38,8 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixgl, catppuccin, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs:
+
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
@@ -55,7 +59,8 @@
         };
         modules = [
           ./home.nix
-          catppuccin.homeManagerModules.catppuccin
+          inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.sops-nix.homeManagerModules.sops
         ];
       };
     };

@@ -1,6 +1,7 @@
 { inputs, config, pkgs, ... }: {
 
   imports = [ 
+    ./sops
     ./development 
     ./console 
     ./desktopEnvironment
@@ -39,6 +40,8 @@
       age-plugin-yubikey
       pinentry-rofi
       qmk
+      ripgrep
+      silver-searcher
 
       kyverno
 
