@@ -43,7 +43,6 @@
       kyverno
 
       cargo
-      nodejs_22
     ];
   };
 
