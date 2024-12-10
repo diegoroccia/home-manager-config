@@ -1,39 +1,39 @@
 { inputs, config, pkgs, ... }: {
 
   home.packages = with pkgs; [
-      brightnessctl
-      dunst
-      hyprpicker
-      hyprpaper
-      waypaper
-      obsidian
-      blueman
-      wlr-randr
-      xfce.thunar
-      xfce.tumbler
-      flameshot
-      grim
-      slurp
-      spotify
-      spicetify-cli
-      steam
+    brightnessctl
+    dunst
+    hyprpicker
+    hyprpaper
+    waypaper
+    obsidian
+    blueman
+    wlr-randr
+    xfce.thunar
+    xfce.tumbler
+    flameshot
+    grim
+    slurp
+    spotify
+    spicetify-cli
+    steam
 
-      wireplumber
-      pavucontrol
+    wireplumber
+    pavucontrol
 
-      # Fonts
-      noto-fonts
-      noto-fonts-emoji
-      material-design-icons
-      font-awesome
-      weather-icons
-      (nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-          "Noto"
-        ];
-      })
-    ];
+    # Fonts
+    noto-fonts
+    noto-fonts-emoji
+    material-design-icons
+    font-awesome
+    weather-icons
+    (nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "Noto"
+      ];
+    })
+  ];
 
   dconf = {
     enable = true;
@@ -181,12 +181,12 @@
         ipc = "on";
         splash = false;
         splash_offset = 2.0;
-        preload = [ 
-          "~/Pictures/wallpapers/0024.jpg" 
-          "~/Pictures/wallpapers/0004.jpg" 
-          "~/Pictures/wallpapers/0014.jpg" 
-          "~/Pictures/wallpapers/0044.jpg" 
-          "~/Pictures/wallpapers/0012.jpg" 
+        preload = [
+          "~/Pictures/wallpapers/0024.jpg"
+          "~/Pictures/wallpapers/0004.jpg"
+          "~/Pictures/wallpapers/0014.jpg"
+          "~/Pictures/wallpapers/0044.jpg"
+          "~/Pictures/wallpapers/0012.jpg"
         ];
         wallpaper = [ ", ~/Pictures/wallpapers/0012.jpg" ];
       };

@@ -1,10 +1,11 @@
 { inputs, config, pkgs, ... }: {
 
-  imports = [ 
+  imports = [
     ./sops
-    ./development 
-    ./console 
+    ./development
+    ./console
     ./desktopEnvironment
+    ./zalando
   ];
 
   targets.genericLinux.enable = true;
@@ -85,6 +86,7 @@
     dircolors.enable = true;
     gh = {
       enable = true;
+      gitCredentialHelper.enable = false;
     };
     git = {
       enable = true;
