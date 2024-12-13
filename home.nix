@@ -1,11 +1,11 @@
 { inputs, config, pkgs, ... }: {
 
   imports = [
-    ./sops
+    ./security
     ./development
     ./console
     ./desktopEnvironment
-    ./zalando
+    # ./zalando
   ];
 
   targets.genericLinux.enable = true;
@@ -25,6 +25,7 @@
       gsettings-desktop-schemas
       dconf-editor
       dconf
+
       glibc
       dbus
 
@@ -32,9 +33,6 @@
       age
       age-plugin-yubikey
       bitwarden
-      git-credential-gopass
-      gopass
-      gopass-jsonapi
       sops
       gnupg
       yubikey-manager
@@ -208,6 +206,9 @@
       };
     };
     configFile = {
+      "gopass/gopass" = {
+        text = (builtins.readFile ./resources/gopass);
+      };
       "environment.d/envvars.conf" = {
         text = ''
           ZDOTDIR="$HOME/.config/zsh"
@@ -264,11 +265,6 @@
       enableZshIntegration = true;
       pinentryPackage = pkgs.pinentry-rofi;
       sshKeys = [
-        # "05836BF42B2E7EE37372720D3DA6FA89D446C46B"
-        # "122C3431F75F2B750F4A72ABC03E38C79980F617"
-        # "12CF5CC16E72856FB3E0576E17B5B7A0CF9B5DF1"
-        # "25FB15E8D62F2883A52ACD1709FCE4562FAEF7CC"
-        # "29648853DD76FEE00CAB329F30A100C8D835BCC6"
         "3D54CF1DF6DC06B40CF596714C77FC864BD2192D"
         "61BD77CB7E3C92ED808D07142022395009086AEA"
         "810816D8FF2104E331F9C823CC6723EB7BCA4E2D"

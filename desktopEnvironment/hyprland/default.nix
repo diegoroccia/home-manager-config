@@ -5,6 +5,7 @@
     dunst
     hyprpicker
     hyprpaper
+    hyprlock
     waypaper
     obsidian
     blueman
