@@ -1,0 +1,30 @@
+[core]
+	notifications = true
+	autoimport = true
+	cliptimeout = 45
+	nopager = false
+	exportkeys = true
+	parsing = true
+[age]
+	usekeychain = false
+[show]
+	safecontent = false
+[generate]
+	autoclip = false
+
+[mounts "personal"]
+	path = /home/diegoroccia/.local/share/gopass/stores/personal
+[recipients "personal"]
+	hash = 5fb7df2a7c1b8290698fd3ae56263fb3b6717d037ce02488fdd049e2dd2c72b8
+
+[mounts "linus-vault"]
+	path = /home/diegoroccia/.local/share/gopass/stores/linus-vault
+[recipients "linus-vault"]
+	hash = 639380bcd5d7f08e47f697f8cb294627c83323cc1bb0f7fc15c9cb7cc9349041
+
+[mounts "aws-vault"]
+	path = /home/diegoroccia/.local/share/gopass/stores/aws-vault
+[recipients "aws-vault"]
+	hash = 639380bcd5d7f08e47f697f8cb294627c83323cc1bb0f7fc15c9cb7cc9349041
+[mounts]
+	path = /home/diegoroccia/.password-store
