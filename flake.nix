@@ -7,6 +7,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
+    cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
+    cachix-deploy-flake.inputs.home-manager.follows = "home-manager";
     sops-nix = {
       url = "github:Mic92/sops-nix";
     };
@@ -38,8 +41,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs:
-
+  outputs = { self, flake-utils, nixpkgs, home-manager, nixgl, cachix-deploy-flake, ... }@inputs:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";

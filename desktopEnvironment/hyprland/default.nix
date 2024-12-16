@@ -19,6 +19,8 @@
     spicetify-cli
     steam
 
+    cachix
+
     wireplumber
     pavucontrol
 
@@ -28,12 +30,8 @@
     material-design-icons
     font-awesome
     weather-icons
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "Noto"
-      ];
-    })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.noto
   ];
 
   dconf = {
@@ -52,10 +50,9 @@
 
   gtk = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      flavor = "macchiato";
-      accent = "flamingo";
+    theme = {
+        name =  "Flat-Remix-GTK-Teal-Dark";
+        package = pkgs.flat-remix-gtk;
     };
     iconTheme = {
       name = "Papirus-Dark";
@@ -94,6 +91,7 @@
     };
     wezterm = {
       enable = true;
+      enableZshIntegration = true;
       package = inputs.wezterm.packages.${pkgs.system}.default;
       extraConfig = (builtins.readFile ./wezterm.lua);
     };
@@ -145,7 +143,7 @@
           color = #ffffff
           subfolders = True
           number_of_columns = 3
-          post_command = 
+          post_command =
           show_hidden = False
           show_gifs_only = False
           use_xdg_state = True
@@ -285,9 +283,9 @@
         "super, b, exec, pkill -SIGUSR1 waybar"
       ];
     };
-    plugins = [
-      inputs.hyprland-plugin-hyprfocus.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
-    ];
+    # plugins = [
+    #   inputs.hyprland-plugin-hyprfocus.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
+    # ];
     extraConfig = (builtins.readFile ./hyprland.conf);
   };
 }

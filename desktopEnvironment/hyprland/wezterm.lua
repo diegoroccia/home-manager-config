@@ -1,11 +1,13 @@
-local wezterm = require("wezterm")
 local config = wezterm.config_builder() or {}
 
 config.enable_wayland = true
 config.automatically_reload_config = true
 config.front_end = "OpenGL"
+-- config.front_end = "Software"
 
-config.mux_enable_ssh_agent = false
+-- if wezterm.version ~= '20240203-110809-5046fc22' then
+--     config.mux_enable_ssh_agent = false
+-- end
 
 -- don't care about tabs
 config.enable_tab_bar = false

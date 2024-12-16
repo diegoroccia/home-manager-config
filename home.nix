@@ -206,9 +206,6 @@
       };
     };
     configFile = {
-      "gopass/gopass" = {
-        text = (builtins.readFile ./resources/gopass);
-      };
       "environment.d/envvars.conf" = {
         text = ''
           ZDOTDIR="$HOME/.config/zsh"
@@ -259,6 +256,11 @@
   };
 
   services = {
+    cachix-agent = {
+      enable = true;
+      name = "home-manager";
+      verbose = true;
+    };
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
