@@ -39,6 +39,9 @@
         };
       };
     };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
   outputs = { self, flake-utils, nixpkgs, home-manager, nixgl, cachix-deploy-flake, ... }@inputs:

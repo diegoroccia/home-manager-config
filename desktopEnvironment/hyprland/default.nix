@@ -18,6 +18,7 @@
     spotify
     spicetify-cli
     steam
+    inputs.ghostty.packages.x86_64-linux.default
 
     cachix
 
@@ -283,9 +284,11 @@
         "super, b, exec, pkill -SIGUSR1 waybar"
       ];
     };
-    # plugins = [
-    #   inputs.hyprland-plugin-hyprfocus.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
-    # ];
+    plugins = [
+      # inputs.hyprland-plugin-hyprfocus.packages.${pkgs.system}.hyprfocus
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    ];
     extraConfig = (builtins.readFile ./hyprland.conf);
   };
 }
