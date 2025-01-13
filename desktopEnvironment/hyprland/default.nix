@@ -18,7 +18,6 @@
     spotify
     spicetify-cli
     steam
-    inputs.ghostty.packages.x86_64-linux.default
 
     cachix
 
@@ -89,12 +88,6 @@
       pass = {
         enable = true;
       };
-    };
-    wezterm = {
-      enable = true;
-      enableZshIntegration = true;
-      package = inputs.wezterm.packages.${pkgs.system}.default;
-      extraConfig = (builtins.readFile ./wezterm.lua);
     };
   };
 

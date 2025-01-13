@@ -2,5 +2,6 @@
 {
   imports = [
     ./hyprland
+    ./terminal-emulators
   ];
 }
