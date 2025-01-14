@@ -223,7 +223,7 @@
           color = #ffffff
           subfolders = True
           number_of_columns = 3
-          post_command = 
+          post_command =
           show_hidden = False
           show_gifs_only = False
           use_xdg_state = True
@@ -285,21 +285,21 @@
     podman = {
       enable = true;
 
-      containers = {
-        homarr = {
-          image = "ghcr.io/ajnart/homarr:latest";
-          ports = [
-            "7575:7575"
-          ];
-          volumes = [
-            "/var/run/docker.sock:/var/run/docker.sock"
-            "${config.xdg.dataHome}/homarr/configs:/app/data/configs"
-            "${config.xdg.dataHome}/homarr/icons:/app/public/icons"
-            "${config.xdg.dataHome}/homarr/data:/data"
-          ];
-          autoStart = true;
-        };
-      };
+      # containers = {
+      #   homarr = {
+      #     image = "ghcr.io/ajnart/homarr:latest";
+      #     ports = [
+      #       "7575:7575"
+      #     ];
+      #     volumes = [
+      #       "/var/run/docker.sock:/var/run/docker.sock"
+      #       "${config.xdg.dataHome}/homarr/configs:/app/data/configs"
+      #       "${config.xdg.dataHome}/homarr/icons:/app/public/icons"
+      #       "${config.xdg.dataHome}/homarr/data:/data"
+      #     ];
+      #     autoStart = true;
+      #   };
+      # };
     };
   };
 
