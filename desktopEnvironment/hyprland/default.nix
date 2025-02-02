@@ -15,11 +15,11 @@
     flameshot
     grim
     slurp
-    spotify
-    spicetify-cli
+#    spotify
+#    spicetify-cli
     steam
 
-    cachix
+    # cachix
 
     wireplumber
     pavucontrol
@@ -30,8 +30,7 @@
     material-design-icons
     font-awesome
     weather-icons
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.noto
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
   ];
 
   dconf = {
@@ -46,7 +45,7 @@
   catppuccin.flavor = "macchiato";
   catppuccin.accent = "flamingo";
   catppuccin.enable = true;
-  catppuccin.pointerCursor.enable = true;
+  catppuccin.cursors.enable = true;
 
   gtk = {
     enable = true;
@@ -105,7 +104,7 @@
       };
     };
     configFile = {
-      "environment.d/hyprland.conf" = {
+      "environment.d/sway.conf" = {
         text = ''
           PATH="$HOME/.nix-profile/bin:$PATH"
           NIXOS_OZONE_WL="1";
@@ -115,9 +114,7 @@
           QT_QPA_PLATFORM=wayland
           SDL_VIDEODRIVER=wayland
           CLUTTER_BACKEND=wayland
-          XDG_CURRENT_DESKTOP=Hyprland
           XDG_SESSION_TYPE=wayland
-          XDG_SESSION_DESKTOP=Hyprland
           QT_AUTO_SCREEN_SCALE_FACTOR=1
           QT_QPA_PLATFORM=wayland
           QT_WAYLAND_DISABLE_WINDOWDECORATION=1
@@ -125,6 +122,26 @@
           XCURSOR_SIZE=24
         '';
       };
+      # "environment.d/hyprland.conf" = {
+      #   text = ''
+      #     PATH="$HOME/.nix-profile/bin:$PATH"
+      #     NIXOS_OZONE_WL="1";
+      #     WLR_RENDERER_ALLOW_SOFTWARE=1
+      #     MOZ_ENABLE_WAYLAND=1
+      #     GDK_BACKEND=wayland
+      #     QT_QPA_PLATFORM=wayland
+      #     SDL_VIDEODRIVER=wayland
+      #     CLUTTER_BACKEND=wayland
+      #     XDG_CURRENT_DESKTOP=Hyprland
+      #     XDG_SESSION_TYPE=wayland
+      #     XDG_SESSION_DESKTOP=Hyprland
+      #     QT_AUTO_SCREEN_SCALE_FACTOR=1
+      #     QT_QPA_PLATFORM=wayland
+      #     QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+      #     QT_QPA_PLATFORMTHEME=qt5ct
+      #     XCURSOR_SIZE=24
+      #   '';
+      # };
       "waypaper/config.ini" = {
         text = ''
           [Settings]
@@ -149,7 +166,7 @@
       enable = true;
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-hyprland
       ];
       xdgOpenUsePortal = true;
       config.common.default = "*";
@@ -202,7 +219,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = (config.lib.nixGL.wrap inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland);
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     systemd = {
       enable = true;
       enableXdgAutostart = true;
@@ -280,7 +297,7 @@
     plugins = [
       # inputs.hyprland-plugin-hyprfocus.packages.${pkgs.system}.hyprfocus
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
     extraConfig = (builtins.readFile ./hyprland.conf);
   };

@@ -1,16 +1,16 @@
-{ inputs, config, pkgs, ... }: {
+{nixgl, config, pkgs, ... }: {
 
   imports = [
+    ./console
     ./security
     ./development
-    ./console
     ./desktopEnvironment
-    # ./zalando
+    #./zalando
   ];
 
   targets.genericLinux.enable = true;
 
-  nixGL.packages = inputs.nixgl.packages;
+  nixGL.packages = nixgl.packages;
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
 
@@ -32,7 +32,7 @@
       # Security
       age
       age-plugin-yubikey
-      bitwarden
+      #bitwarden
       sops
       gnupg
       yubikey-manager
@@ -42,9 +42,8 @@
       ripgrep
       silver-searcher
 
-      kyverno
-
-      cargo
+      #kyverno
+      #cargo
     ];
   };
 
@@ -169,9 +168,9 @@
       ];
     };
 
-    awscli = {
-      enable = true;
-    };
+    # awscli = {
+    #   enable = true;
+    # };
 
     ssh = {
       enable = true;
@@ -256,23 +255,26 @@
   };
 
   services = {
-    cachix-agent = {
-      enable = true;
-      name = "home-manager";
-      verbose = true;
-    };
+    # cachix-agent = {
+    #   enable = true;
+    #   name = "home-manager";
+    #   verbose = true;
+    # };
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
       enableZshIntegration = true;
       pinentryPackage = pkgs.pinentry-rofi;
       sshKeys = [
-        "3D54CF1DF6DC06B40CF596714C77FC864BD2192D"
-        "61BD77CB7E3C92ED808D07142022395009086AEA"
-        "810816D8FF2104E331F9C823CC6723EB7BCA4E2D"
-        "AEACECC48B2A943AC83D0BB1E471D9CD4E730CF3"
-        "C0BC69655A10317768FB8C7DE11DCE26E8E3BFCB"
-        "DBA1FC622050CAD3118969849DDEADB57A827AB0"
+                "3D54CF1DF6DC06B40CF596714C77FC864BD2192D"
+                "61BD77CB7E3C92ED808D07142022395009086AEA"
+                "810816D8FF2104E331F9C823CC6723EB7BCA4E2D"
+                "AEACECC48B2A943AC83D0BB1E471D9CD4E730CF3"
+                "C0BC69655A10317768FB8C7DE11DCE26E8E3BFCB"
+                "DBA1FC622050CAD3118969849DDEADB57A827AB0"
+                "64597D98438CFF02EB6BABCDDC6EACFAD12607DF"
+                "810816D8FF2104E331F9C823CC6723EB7BCA4E2D"
+                "29648853DD76FEE00CAB329F30A100C8D835BCC6"
       ];
     };
     home-manager = {

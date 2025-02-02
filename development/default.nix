@@ -25,6 +25,7 @@
     ./git
     ./python
     ./javascript
+    ./java
   ];
 
 }

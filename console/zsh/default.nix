@@ -29,7 +29,6 @@
         "gp" = "git pull";
         "gpp" = "git push";
         "gcp" = "git commit -am '`date`'; git push";
-        "docker" = "podman";
         "vim" = "nvim";
         "v" = "nvim";
         "cat" = "bat";

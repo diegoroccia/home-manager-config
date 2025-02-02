@@ -13,7 +13,7 @@ Host git-codecommit.ap-east-1.amazonaws.com
 
 Host github.com
     User git
-    IdentityFile ~/.ssh/github-personal.pub
+    IdentityFile ~/.ssh/github-personal
     IdentitiesOnly yes
 
 Host github.bus.zalan.do
@@ -25,11 +25,11 @@ Host github.bus.zalan.do
 Host github-zse
     HostName github.com
     User git
-    IdentityFile ~/.ssh/github-zse.pub
+    IdentityFile ~/.ssh/github-zse
     IdentitiesOnly yes
 
 Host github-zcn
     HostName github.com
     User git
-    IdentityFile ~/.ssh/github-zcn.pub
+    IdentityFile ~/.ssh/github-zcn
     IdentitiesOnly yes
