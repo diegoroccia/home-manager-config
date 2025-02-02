@@ -8,15 +8,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
-    # cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
-    # cachix-deploy-flake.inputs.home-manager.follows = "home-manager";
     sops-nix = {
       url = "github:Mic92/sops-nix";
     };
     nixgl = {
       url = "github:nix-community/nixgl";
     };
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     catppuccin.url = "github:catppuccin/nix";
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
@@ -59,7 +57,7 @@
           ./home.nix
           inputs.catppuccin.homeManagerModules.catppuccin
           inputs.sops-nix.homeManagerModules.sops
-          inputs.hyprland.homeManagerModules.default
+          # inputs.hyprland.homeManagerModules.default
         ];
       };
     };
