@@ -1,4 +1,4 @@
-{nixgl, config, pkgs, ... }: {
+{inputs, config, pkgs, ... }: {
 
   imports = [
     ./console
@@ -10,9 +10,10 @@
 
   targets.genericLinux.enable = true;
 
-  nixGL.packages = nixgl.packages;
+  nixGL.packages = inputs.nixgl.packages;
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
+  nixGL.vulkan.enable = true;
 
   home = {
     username = "diegoroccia";
@@ -26,7 +27,6 @@
       dconf-editor
       dconf
 
-      glibc
       dbus
 
       # Security
@@ -41,6 +41,8 @@
       qmk
       ripgrep
       silver-searcher
+
+      cachix
 
       #kyverno
       #cargo
@@ -71,10 +73,10 @@
 
   programs = {
     home-manager.enable = true;
-    pyenv = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    # pyenv = {
+    #   enable = true;
+    #   enableZshIntegration = true;
+    # };
     bat.enable = true;
     btop.enable = true;
 

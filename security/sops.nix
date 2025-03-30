@@ -9,5 +9,6 @@
     password = {
       path = "${config.home.homeDirectory}/.ssh/github-ghe";
     };
+    gridsphere_github_token = {};
   };
 }

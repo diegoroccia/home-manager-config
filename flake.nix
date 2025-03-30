@@ -13,8 +13,12 @@
     };
     nixgl = {
       url = "github:nix-community/nixgl";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    # nixgl = {
+    #   url = "github:johanneshorner/nixGL";
+    # };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     catppuccin.url = "github:catppuccin/nix";
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
@@ -29,17 +33,20 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, flake-utils, nixpkgs, home-manager, nixgl, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
     let
+      lib = nixpkgs.lib;
+      system = "x86_64-linux";
       pkgs = import nixpkgs {
-        system = "x86_64-linux";
+        inherit system;
+        overlays = [ nixgl.overlay ];
         config = {
           allowUnfree = true;
           allowUnfreePredicate = _: true;
         };
-        overlays = [ nixgl.overlay ];
       };
     in
     {
@@ -48,17 +55,19 @@
       packages.x86_64-linux.default = self.homeConfigurations."diegoroccia".activationPackage;
       defaultPackage.x86_64-linux = self.homeConfigurations."diegoroccia".activationPackage;
 
-      homeConfigurations."diegoroccia" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit nixpkgs inputs nixgl;
+      homeConfigurations = {
+        "diegoroccia" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs ;
+            extraSpecialArgs = {
+              inherit nixgl inputs;
+            };
+            modules = [
+              ./home.nix
+              inputs.catppuccin.homeManagerModules.catppuccin
+              inputs.sops-nix.homeManagerModules.sops
+              inputs.hyprland.homeManagerModules.default
+            ];
+          };
         };
-        modules = [
-          ./home.nix
-          inputs.catppuccin.homeManagerModules.catppuccin
-          inputs.sops-nix.homeManagerModules.sops
-          # inputs.hyprland.homeManagerModules.default
-        ];
-      };
     };
 }

@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     devenv
+    timoni
   ];
 
   editorconfig = {
@@ -26,6 +27,7 @@
     ./python
     ./javascript
     ./java
+    ./lua
   ];
 
 }

@@ -30,7 +30,8 @@
 
     "clock" = {
       tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-      format = "{:%a, %d %b, %I:%M %p}";
+       format = "{:L%Y-%m-%d %H:%M}";
+       timezone= "Europe/Berlin";
     };
 
     pulseaudio = {

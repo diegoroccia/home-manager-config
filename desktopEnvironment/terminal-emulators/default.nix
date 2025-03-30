@@ -5,7 +5,7 @@
         wezterm = {
           enable = true;
           enableZshIntegration = true;
-          package = (config.lib.nixGL.wrap inputs.wezterm.packages.${pkgs.system}.default);
+          package = config.lib.nixGL.wrap inputs.wezterm.packages.${pkgs.system}.default;
           extraConfig = (builtins.readFile ./wezterm.lua);
         };
 
@@ -13,7 +13,7 @@
             enable = true;
             installBatSyntax = true;
             enableZshIntegration = true;
-            package = (config.lib.nixGL.wrap  inputs.ghostty.packages.x86_64-linux.default);
+            package = config.lib.nixGL.wrap inputs.ghostty.packages.${pkgs.system}.default;
 
             settings = {
                     theme = "catppuccin-mocha";

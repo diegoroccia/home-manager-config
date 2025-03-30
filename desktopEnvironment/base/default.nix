@@ -7,9 +7,9 @@
     hyprpaper
     hyprlock
     waypaper
-    obsidian
     blueman
     wlr-randr
+    kanshi
     xfce.thunar
     xfce.tumbler
     flameshot
@@ -23,6 +23,9 @@
 
     wireplumber
     pavucontrol
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-wlr
+    xdg-desktop-portal-hyprland
 
     # Fonts
     noto-fonts
@@ -68,7 +71,7 @@
   programs = {
     chromium = {
       enable = true;
-      package = pkgs.google-chrome;
+      package = config.lib.nixGL.wrap pkgs.google-chrome;
     };
     browserpass.enable = true;
     firefox.enable = true;
@@ -122,26 +125,6 @@
           XCURSOR_SIZE=24
         '';
       };
-      # "environment.d/hyprland.conf" = {
-      #   text = ''
-      #     PATH="$HOME/.nix-profile/bin:$PATH"
-      #     NIXOS_OZONE_WL="1";
-      #     WLR_RENDERER_ALLOW_SOFTWARE=1
-      #     MOZ_ENABLE_WAYLAND=1
-      #     GDK_BACKEND=wayland
-      #     QT_QPA_PLATFORM=wayland
-      #     SDL_VIDEODRIVER=wayland
-      #     CLUTTER_BACKEND=wayland
-      #     XDG_CURRENT_DESKTOP=Hyprland
-      #     XDG_SESSION_TYPE=wayland
-      #     XDG_SESSION_DESKTOP=Hyprland
-      #     QT_AUTO_SCREEN_SCALE_FACTOR=1
-      #     QT_QPA_PLATFORM=wayland
-      #     QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-      #     QT_QPA_PLATFORMTHEME=qt5ct
-      #     XCURSOR_SIZE=24
-      #   '';
-      # };
       "waypaper/config.ini" = {
         text = ''
           [Settings]
@@ -166,6 +149,7 @@
       enable = true;
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-wlr
         pkgs.xdg-desktop-portal-hyprland
       ];
       xdgOpenUsePortal = true;
@@ -184,30 +168,14 @@
     gnome-keyring = {
       enable = true;
     };
-    hyprpaper = {
-      enable = true;
 
-      settings = {
-        ipc = "on";
-        splash = false;
-        splash_offset = 2.0;
-        preload = [
-          "~/Pictures/wallpapers/0024.jpg"
-          "~/Pictures/wallpapers/0004.jpg"
-          "~/Pictures/wallpapers/0014.jpg"
-          "~/Pictures/wallpapers/0044.jpg"
-          "~/Pictures/wallpapers/0012.jpg"
-        ];
-        wallpaper = [ ", ~/Pictures/wallpapers/0012.jpg" ];
-      };
-    };
-
+    dunst.enable = true;
+    dunst.settings = (import ./dunstrc.nix);
     network-manager-applet.enable = true;
     swayosd = {
       enable = true;
       stylePath = "${pkgs.swayosd}/etc/xdg/swayosd/style.css";
     };
   };
-
 }
 

@@ -1,50 +1,31 @@
 { inputs, config, pkgs, ... }: {
 
-  xdg = {
-    configFile = {
-      "environment.d/hyprland.conf" = {
-        text = ''
-          PATH="$HOME/.nix-profile/bin:$PATH"
-          NIXOS_OZONE_WL="1";
-          WLR_RENDERER_ALLOW_SOFTWARE=1
-          MOZ_ENABLE_WAYLAND=1
-          GDK_BACKEND=wayland
-          QT_QPA_PLATFORM=wayland
-          SDL_VIDEODRIVER=wayland
-          CLUTTER_BACKEND=wayland
-          XDG_CURRENT_DESKTOP=Hyprland
-          XDG_SESSION_TYPE=wayland
-          XDG_SESSION_DESKTOP=Hyprland
-          QT_AUTO_SCREEN_SCALE_FACTOR=1
-          QT_QPA_PLATFORM=wayland
-          QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-          QT_QPA_PLATFORMTHEME=qt5ct
-          XCURSOR_SIZE=24
-        '';
-      };
-    };
-
-    portal = {
-      enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-hyprland
-      ];
-      xdgOpenUsePortal = true;
-      config.common.default = "*";
-    };
-  };
+  # xdg = {
+    # configFile = {
+    #   "environment.d/hyprland.conf" = {
+    #     text = ''
+    #       PATH="$HOME/.nix-profile/bin:$PATH"
+    #       NIXOS_OZONE_WL="1";
+    #       # WLR_RENDERER_ALLOW_SOFTWARE=1
+    #       MOZ_ENABLE_WAYLAND=1
+    #       # GDK_BACKEND=wayland
+    #       # QT_QPA_PLATFORM=wayland
+    #       # SDL_VIDEODRIVER=wayland
+    #       # CLUTTER_BACKEND=wayland
+    #       XDG_CURRENT_DESKTOP=Hyprland
+    #       XDG_SESSION_TYPE=wayland
+    #       XDG_SESSION_DESKTOP=Hyprland
+    #       QT_AUTO_SCREEN_SCALE_FACTOR=1
+    #       QT_QPA_PLATFORM=wayland
+    #       QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    #       QT_QPA_PLATFORMTHEME=qt5ct
+    #       XCURSOR_SIZE=24
+    #     '';
+    #   };
+    # };
+    # };
 
   services = {
-    wlsunset = {
-      enable = true;
-      latitude = 52.5200;
-      longitude = 13.4050;
-    };
-    blueman-applet.enable = true;
-    gnome-keyring = {
-      enable = true;
-    };
     hyprpaper = {
       enable = true;
 
@@ -63,18 +44,11 @@
       };
     };
 
-    dunst.enable = true;
-    dunst.settings = (import ./dunstrc.nix);
-    network-manager-applet.enable = true;
-    swayosd = {
-      enable = true;
-      stylePath = "${pkgs.swayosd}/etc/xdg/swayosd/style.css";
-    };
   };
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = (config.lib.nixGL.wrap  pkgs.hyprland);
+    package = config.lib.nixGL.wrap inputs.hyprland.packages.${pkgs.system}.hyprland;
 
    systemd = {
       enable = true;

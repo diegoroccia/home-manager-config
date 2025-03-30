@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
 
   home.packages = with pkgs; [
     onefetch
@@ -8,7 +8,8 @@
     jq
     podman
     tmux
-    neovim
+    # inputs.neovim-nightly.packages.${system}.default
+    # neovim-unwrapped
     wl-clipboard
   ];
 
@@ -32,8 +33,12 @@
         "vim" = "nvim";
         "v" = "nvim";
         "cat" = "bat";
+        "zaws" = "zalando-aws-cli";
       };
-      autosuggestion.enable = true;
+      autosuggestion = {
+                enable = true;
+                strategy = [ "completion" "match_prev_cmd" "history"  ];
+            };
       syntaxHighlighting.enable = true;
       history = {
         append = true;

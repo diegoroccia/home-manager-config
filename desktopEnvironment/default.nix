@@ -2,7 +2,7 @@
 {
   imports = [
     ./base
-    ./hyprland
+    # ./hyprland
     ./terminal-emulators
   ];
 }
